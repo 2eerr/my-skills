@@ -66,8 +66,11 @@ confirmation. These are repo-workflow shortcuts, not `skills` CLI commands.
 | `git!` | **Descriptive commit.** Inspect `git status` + `git diff`, stage all changes (`git add -A`), and commit with a **specific imperative message that describes the actual change** (never a generic "update"). |
 | `push!` | **Commit + push everything.** Run `git!` first (so nothing is left uncommitted), then push **all local branches** to `origin`: `git push origin --all --follow-tags`. |
 | `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and anything under `docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `npx skills add . --list`. |
+| `i!` | **Instruction only — do NOT act.** Don't perform the described action. Instead, add it as a rule/instruction to the relevant `.md` file (usually `AGENTS.md`, or the matching skill/doc), then stop. |
 
 Notes:
+- `i!` takes precedence: if a message starts with `i!`, only record the instruction in the right
+  `.md` file — never execute it.
 - `git!`/`push!` follow the Conventions below (commit to `main`, pinned `2eerr` remote, author
   `hammad <hello@hammad.com>`).
 - `docs!` is the mechanism that keeps this repo's documentation from drifting — run it after any
