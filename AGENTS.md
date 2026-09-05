@@ -15,6 +15,7 @@ GitHub (`2eerr/my-skills`) is the single source of truth.
 my-skills/
 ├── AGENTS.md            # this file — AI instructions
 ├── README.md            # human-facing overview + install/update commands
+├── CHANGELOG.md         # chronological record of skill/doc changes (keep in sync)
 ├── plan.md              # decision record (hosting + CLI choice)
 ├── templates/           # scaffolds (NOT discovered by the CLI)
 │   └── SKILL.template.md
