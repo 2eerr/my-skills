@@ -101,6 +101,7 @@ confirmation. These are repo-workflow shortcuts, not `skills` CLI commands.
 | `push!` | **Commit, integrate, publish, then clean up `main` — in this order, keeping history linear:** (1) run `git!` (commit pending work on its feature branch); (2) for **every other local branch except `main`**, rebase it onto `main` then fast-forward `main` onto it (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`) — **no merge commits**; (3) push **`main`** to `origin` (`git push origin main`); (4) **delete only the local branches that merged successfully into `main`** (`git branch --merged main`, excluding `main` itself) — never delete unmerged branches. |
 | `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and the local-only `docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list`. |
 | `i!` | **Instruction only — do NOT act.** Don't perform the described action. Instead, add it as a rule/instruction to the relevant `.md` file (usually `AGENTS.md`, or the matching skill/doc), then stop. |
+| `clean!` | **Merge & prune branches (no push).** (1) run `git!` (commit pending work on its feature branch); (2) integrate **every other local branch** into `main` — rebase onto `main` then fast-forward (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`), no merge commits; (3) **delete only the local branches that merged successfully** into `main` (`git branch --merged main`, excluding `main`) — branch names only, never their code (use `git branch -d`, never `-D`, so unmerged work can't be lost). |
 
 Notes:
 - `i!` takes precedence: if a message starts with `i!`, only record the instruction in the right
@@ -110,6 +111,8 @@ Notes:
 - `push!` is the sanctioned way to land work on `main`: it rebases feature branches onto `main`
   and fast-forwards (a linear merge, not a merge commit), then pushes `main`. Direct commits on
   `main` stay forbidden.
+- `clean!` is `push!` without the push: it commits, integrates every branch into `main`, then
+  prunes only the merged branch names — the code always stays in `main`.
 - `docs!` is the mechanism that keeps this repo's documentation from drifting — run it after any
   add/update/remove of a skill, and it should leave nothing out of sync.
 
