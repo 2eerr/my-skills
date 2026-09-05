@@ -68,8 +68,6 @@ outside-click/Escape + manages focus, contrast ≥4.5:1. Keep a manual WCAG chec
 
 ## Images
 
-If photos are used: every `<img>` needs `width`+`height`+descriptive `alt`, lazy-load below the
-fold, SVG for icons / WebP for photos, unique images per page type. Only use freely-licensed
-images (public domain / CC BY / CC BY-SA) and keep an attribution table accurate; original
-illustrations/OG card are fine. If images are temporarily removed, keep the attribution list so
-re-adding is safe.
+Owned by the sibling skill **`programmatic-seo-image-seo`** — self-hosting, formats (SVG/WebP),
+width/height + alt + lazy-loading, standard sizes, OG card, and the freely-licensed
+attribution practice. Components render per that spec; do not restate image rules here.

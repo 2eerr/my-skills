@@ -13,10 +13,11 @@ service niche (water damage, roofing, HVAC, landscaping, moving, etc.) covering 
 without stopping for permission, until the tracker is all `[x]`.
 
 This skill is the **orchestrator**. Detailed specs live in the sibling skills:
-`programmatic-seo-content-writing`, `programmatic-seo-technical-seo`,
-`programmatic-seo-keyword-architecture`, `programmatic-seo-service-catalog`,
-`programmatic-seo-location-model`, `programmatic-seo-data-packs`,
-`programmatic-seo-design-system`, `programmatic-seo-deployment`.
+`programmatic-seo-content-writing`, `programmatic-seo-onpage-seo`,
+`programmatic-seo-technical-seo`, `programmatic-seo-schema`, `programmatic-seo-local-seo`,
+`programmatic-seo-image-seo`, `programmatic-seo-keyword-architecture`,
+`programmatic-seo-service-catalog`, `programmatic-seo-location-model`,
+`programmatic-seo-data-packs`, `programmatic-seo-design-system`, `programmatic-seo-deployment`.
 
 ## Project config (supply per site, never hardcode in the skill)
 
