@@ -63,16 +63,19 @@ confirmation. These are repo-workflow shortcuts, not `skills` CLI commands.
 
 | Trigger | Do this |
 |---|---|
-| `git!` | **Descriptive commit.** Inspect `git status` + `git diff`, stage all changes (`git add -A`), and commit with a **specific imperative message that describes the actual change** (never a generic "update"). |
-| `push!` | **Commit + push everything.** Run `git!` first (so nothing is left uncommitted), then push **all local branches** to `origin`: `git push origin --all --follow-tags`. |
+| `git!` | **Descriptive commit (on a branch).** If on `main`, first create a feature branch named for the change (see Conventions → Branching) — **never commit directly to `main`.** Inspect `git status` + `git diff`, stage all changes (`git add -A`), and commit with a **specific imperative message that describes the actual change** (never a generic "update"). |
+| `push!` | **Commit, integrate, then publish `main` — in this order, keeping history linear:** (1) run `git!` (commit pending work on its feature branch); (2) for **every other local branch except `main`**, rebase it onto `main` then fast-forward `main` onto it (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`) — **no merge commits**; (3) push **`main`** to `origin` (`git push origin main`). |
 | `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and anything under `docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `npx skills add . --list`. |
 | `i!` | **Instruction only — do NOT act.** Don't perform the described action. Instead, add it as a rule/instruction to the relevant `.md` file (usually `AGENTS.md`, or the matching skill/doc), then stop. |
 
 Notes:
 - `i!` takes precedence: if a message starts with `i!`, only record the instruction in the right
   `.md` file — never execute it.
-- `git!`/`push!` follow the Conventions below (commit to `main`, pinned `2eerr` remote, author
-  `hammad <hello@hammad.com>`).
+- `git!`/`push!` follow the Conventions below (commit to a **feature branch, never `main`**;
+  pinned `2eerr` remote; author `hammad <hello@hammad.com>`).
+- `push!` is the sanctioned way to land work on `main`: it rebases feature branches onto `main`
+  and fast-forwards (a linear merge, not a merge commit), then pushes `main`. Direct commits on
+  `main` stay forbidden.
 - `docs!` is the mechanism that keeps this repo's documentation from drifting — run it after any
   add/update/remove of a skill, and it should leave nothing out of sync.
 
@@ -102,8 +105,18 @@ Notes:
 
 ## Conventions
 
-- **Git:** commit directly to `main`; remote is pinned to the `2eerr` account
-  (`https://2eerr@github.com/2eerr/my-skills.git`) so pushes never prompt for an account.
+- **Git:** **never commit directly to `main`.** For any change, create a feature branch named for
+  that change (see **Branching**), commit there, and integrate via a **squash- or rebase-merge**
+  (never a merge commit). The remote is pinned to the
+  `2eerr` account (`https://2eerr@github.com/2eerr/my-skills.git`) so pushes never prompt for an account.
+- **Branching (industry standard):** `<type>/<kebab-slug>`, where `<type>` is a Conventional-Commits
+  type — `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `ci`, `style`, `build`. Keep the
+  slug short and descriptive, e.g. `feat/add-data-pack-skill`, `docs/sync-readme-cli`,
+  `fix/skill-frontmatter-colon`. Optionally prefix an issue number (`feat/123-…`). `main` stays
+  protected; work lands from feature branches via PRs that are squash-/rebase-merged.
+- **Linear history (always):** the git graph must stay a single straight line — **no merge
+  commits.** Rebase feature branches onto `main` and integrate with `git merge --ff-only`; use
+  `git pull --rebase` (never a merging pull). Avoid `--no-ff`.
 - **Author:** local `user.name=hammad`, `user.email=hello@hammad.com` (already set for this repo).
 - **Commit messages:** short imperative subject; one line per logical change.
 - **Never** add a `package.json`, lockfile, or build tooling — this repo has no code.
