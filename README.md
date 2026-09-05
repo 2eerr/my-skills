@@ -1,8 +1,9 @@
 # My Skills
 
 A personal **skills hub** — reusable [OpenCode](https://opencode.ai) skills that install into
-any project (or globally) with the official [`skills`](https://github.com/vercel-labs/skills)
-CLI. This repo is the single source of truth; it's pure Markdown (no build, no dependencies).
+any project (or globally) with the official [`skills`](https://www.npmjs.com/package/skills) CLI —
+the npm package used for **every** skill action here (install, update, list, find, remove, init).
+This repo is the single source of truth; it's pure Markdown (no build, no dependencies).
 
 The skills encode a repeatable system for building **programmatic local-SEO / rank-and-rent
 lead-gen sites** (any service niche). They were distilled from the reference specs in [`docs/`](docs).
@@ -56,9 +57,12 @@ Updates take effect in **new** OpenCode sessions (no hot-reload).
 
 ## skills CLI reference
 
-The [`skills`](https://github.com/vercel-labs/skills) CLI (the tool behind [skills.sh](https://skills.sh),
-current v1.5.23) runs on demand with `npx skills …` — no install. Examples use this repo
-(`2eerr/my-skills`); substitute any `owner/repo`.
+All skill actions — **install, update, list, find, remove, and scaffolding** — are performed with
+the [`skills`](https://www.npmjs.com/package/skills) npm package
+([npm](https://www.npmjs.com/package/skills) · [GitHub](https://github.com/vercel-labs/skills) ·
+the tool behind [skills.sh](https://skills.sh), current v1.5.23). It runs on demand via
+`npx skills …` — no global install needed. Examples use this repo (`2eerr/my-skills`); substitute
+any `owner/repo`.
 
 ### `skills add <source>` — install skills
 
