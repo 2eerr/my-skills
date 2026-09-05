@@ -8,7 +8,8 @@ skill action here (install, update, list, find, remove, init).
 This repo is the single source of truth; it's pure Markdown (no build, no dependencies).
 
 The skills encode a repeatable system for building **programmatic local-SEO / rank-and-rent
-lead-gen sites** (any service niche). They were distilled from the reference specs in [`docs/`](docs).
+lead-gen sites** (any service niche). They were distilled from the maintainer's reference specs
+(kept local-only in `docs/`, not published with the repo).
 
 ## Skills
 
@@ -16,13 +17,18 @@ lead-gen sites** (any service niche). They were distilled from the reference spe
 |---|---|
 | [`programmatic-seo-autopilot`](skills/programmatic-seo-autopilot/SKILL.md) | Orchestrator: write every missing page by hand, one at a time, honoring the tracker (claim a region → locations first → region page last). |
 | [`programmatic-seo-content-writing`](skills/programmatic-seo-content-writing/SKILL.md) | Content standard: ≥90% uniqueness, entity floors, expert voice, markdown/UI formatting, quality gates. |
-| [`programmatic-seo-technical-seo`](skills/programmatic-seo-technical-seo/SKILL.md) | Technical & on-page SEO: URLs, titles/meta, JSON-LD matrix, sitemaps, Core Web Vitals, local SEO. |
+| [`programmatic-seo-onpage-seo`](skills/programmatic-seo-onpage-seo/SKILL.md) | On-page: titles/meta, canonical, headings, internal links & link equity, OG/Twitter. |
+| [`programmatic-seo-technical-seo`](skills/programmatic-seo-technical-seo/SKILL.md) | Technical: URL architecture, sitemaps, robots, Core Web Vitals, indexability, SEO check script. |
+| [`programmatic-seo-schema`](skills/programmatic-seo-schema/SKILL.md) | JSON-LD structured data: base graph, per-page schema matrix, `@id` rules, FAQPage/review guards, LocalBusiness/NAP, validation. |
+| [`programmatic-seo-local-seo`](skills/programmatic-seo-local-seo/SKILL.md) | Local: on-page local signals, GBP & citations, NAP consistency, local KPIs. |
+| [`programmatic-seo-image-seo`](skills/programmatic-seo-image-seo/SKILL.md) | Images: self-hosting, SVG/WebP, width/height+alt+lazy, OG card, licensing & attribution. |
 | [`programmatic-seo-keyword-architecture`](skills/programmatic-seo-keyword-architecture/SKILL.md) | Keyword patterns per page type, tiers, and the related-services internal-link map. |
 | [`programmatic-seo-service-catalog`](skills/programmatic-seo-service-catalog/SKILL.md) | Model the service/subservice list, categories, routing, hub/money specs, batch order. |
 | [`programmatic-seo-location-model`](skills/programmatic-seo-location-model/SKILL.md) | Geography hierarchy, demand filter, and content-gated publishing rules. |
 | [`programmatic-seo-data-packs`](skills/programmatic-seo-data-packs/SKILL.md) | Gather verified per-location local facts before writing. |
 | [`programmatic-seo-design-system`](skills/programmatic-seo-design-system/SKILL.md) | Theme-able premium UI system: tokens, typography, components, accessibility. |
 | [`programmatic-seo-deployment`](skills/programmatic-seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
+| [`linear-git-workflow`](skills/linear-git-workflow/SKILL.md) | Commit/publish with linear history: feature branches `<type>/<slug>`, descriptive commits, rebase + `--ff-only`, push default branch. |
 
 ## Install
 
@@ -225,9 +231,11 @@ my-skills/
 ├── AGENTS.md            # AI working instructions (rules, workflows, conventions)
 ├── CHANGELOG.md         # chronological record of skill/doc changes
 ├── templates/           # scaffolds (not discovered by the CLI)
-├── docs/                # reference specs the skills were distilled from (a sample niche)
 └── skills/              # the installable skills (auto-discovered by the CLI)
-    └── programmatic-seo-*/SKILL.md
+    ├── programmatic-seo-*/SKILL.md
+    └── linear-git-workflow/SKILL.md
+
+(docs/ — original reference specs — is local-only: gitignored, never pushed)
 ```
 
 ## Environment variables & notes

@@ -30,10 +30,11 @@ my-skills/
 ├── CHANGELOG.md         # chronological record of skill/doc changes (keep in sync)
 ├── templates/           # scaffolds (NOT discovered by the CLI)
 │   └── SKILL.template.md
-├── docs/                # reference specs the skills were distilled from (a sample niche)
 └── skills/              # the installable skills (auto-discovered by the CLI)
     └── <skill-name>/SKILL.md
 ```
+
+(`docs/` — original reference specs — is local-only: gitignored, never pushed.)
 
 ## Golden rules
 
@@ -97,8 +98,8 @@ confirmation. These are repo-workflow shortcuts, not `skills` CLI commands.
 | Trigger | Do this |
 |---|---|
 | `git!` | **Descriptive commit (on a branch).** If on `main`, first create a feature branch named for the change (see Conventions → Branching) — **never commit directly to `main`.** Inspect `git status` + `git diff`, stage all changes (`git add -A`), and commit with a **specific imperative message that describes the actual change** (never a generic "update"). |
-| `push!` | **Commit, integrate, then publish `main` — in this order, keeping history linear:** (1) run `git!` (commit pending work on its feature branch); (2) for **every other local branch except `main`**, rebase it onto `main` then fast-forward `main` onto it (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`) — **no merge commits**; (3) push **`main`** to `origin` (`git push origin main`). |
-| `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and anything under `docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list`. |
+| `push!` | **Commit, integrate, publish, then clean up `main` — in this order, keeping history linear:** (1) run `git!` (commit pending work on its feature branch); (2) for **every other local branch except `main`**, rebase it onto `main` then fast-forward `main` onto it (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`) — **no merge commits**; (3) push **`main`** to `origin` (`git push origin main`); (4) **delete only the local branches that merged successfully into `main`** (`git branch --merged main`, excluding `main` itself) — never delete unmerged branches. |
+| `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and the local-only `docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list`. |
 | `i!` | **Instruction only — do NOT act.** Don't perform the described action. Instead, add it as a rule/instruction to the relevant `.md` file (usually `AGENTS.md`, or the matching skill/doc), then stop. |
 
 Notes:
@@ -141,7 +142,8 @@ Notes:
 
 - **Git:** **never commit directly to `main`.** For any change, create a feature branch named for
   that change (see **Branching**), commit there, and integrate via a **squash- or rebase-merge**
-  (never a merge commit). The remote is pinned to the
+  (never a merge commit). **Only `main` is ever pushed to `origin`** — feature branches stay
+  local until they are fast-forwarded into `main`. The remote is pinned to the
   `2eerr` account (`https://2eerr@github.com/2eerr/my-skills.git`) so pushes never prompt for an account.
 - **Branching (industry standard):** `<type>/<kebab-slug>`, where `<type>` is a Conventional-Commits
   type — `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `ci`, `style`, `build`. Keep the
@@ -161,7 +163,7 @@ Notes:
 ## Quality bar for a good skill
 
 - Description is specific enough that the agent loads it at the right moment (and only then).
-- Body is actionable and self-contained — it works without opening `docs/`.
+- Body is actionable and self-contained — it works without opening the local-only `docs/`.
 - Uses imperative, concrete language; no filler.
 - Stays general (placeholders + config step), so it applies across many projects.
 - Reasonable length; split into multiple skills when topics diverge.
@@ -169,6 +171,8 @@ Notes:
 ## Current skills
 
 `programmatic-seo-autopilot`, `programmatic-seo-content-writing`,
-`programmatic-seo-technical-seo`, `programmatic-seo-keyword-architecture`,
-`programmatic-seo-service-catalog`, `programmatic-seo-location-model`,
-`programmatic-seo-data-packs`, `programmatic-seo-design-system`, `programmatic-seo-deployment`.
+`programmatic-seo-onpage-seo`, `programmatic-seo-technical-seo`, `programmatic-seo-schema`,
+`programmatic-seo-local-seo`, `programmatic-seo-image-seo`,
+`programmatic-seo-keyword-architecture`, `programmatic-seo-service-catalog`,
+`programmatic-seo-location-model`, `programmatic-seo-data-packs`,
+`programmatic-seo-design-system`, `programmatic-seo-deployment`, `linear-git-workflow`.

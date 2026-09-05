@@ -15,3 +15,6 @@ node_modules/
 # skills CLI install artifacts (not needed in the source repo)
 .agents/
 skills-lock.json
+
+# local-only reference specs (not published to GitHub)
+docs/
