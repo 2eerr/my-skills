@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-deployment
 description: "Build-and-publish workflow for a programmatic local-SEO lead-gen site (any niche) built as a static site — the content gate (unique: true) that makes the build equal publishing, the delivery-gate validation scripts (data, SEO, word-count checks), sitemap generation, static-host upload, cache headers, and source-zip packaging. Use when shipping newly-written content or deploying a static Astro/SSG site."
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO Deployment (static build)

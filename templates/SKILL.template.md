@@ -1,6 +1,8 @@
 ---
 name: <skill-name-lowercase-hyphenated>
 description: "<One or two specific sentences: what this skill does AND when the agent should load it (the trigger). 1-1024 chars. Wrap in double quotes if it contains a colon-space like (foo: bar)."
+metadata:
+  internal: true
 ---
 
 # <Human Readable Title>
@@ -14,7 +16,7 @@ HOW TO USE THIS TEMPLATE (delete these comments before committing):
 4. Keep the skill NICHE-AGNOSTIC: use {placeholders} and a "read the project config" step.
    Concrete examples are fine only as clearly-labeled illustrations.
 5. Make the body self-contained and actionable — it should work without opening other files.
-6. Validate:  npx skills add . --list   (must appear, no YAML parse error)
+6. Validate:  INSTALL_INTERNAL_SKILLS=1 npx skills add . --list   (must appear, no YAML parse error)
 7. Add a README table row + a CHANGELOG entry, then commit + push.
 -->
 

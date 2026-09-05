@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-autopilot
 description: Run a content autopilot for a programmatic local-SEO lead-gen site (any service niche) — write every missing page (core, service hubs, region, location, and location×service money pages) by hand, one at a time, honoring a generated tracker, claiming a region before writing it, and writing all of a region's locations before its region page. Use when the user references a start/tracker file or asks to generate/write content pages for a rank-and-rent or service-area site.
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO Content Autopilot

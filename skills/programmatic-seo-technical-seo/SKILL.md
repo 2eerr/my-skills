@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-technical-seo
 description: Apply a technical & on-page SEO spec for a programmatic local-SEO lead-gen site (any niche) — trailing-slash URL architecture, title/meta patterns, canonicals, heading rules, the JSON-LD schema matrix (WebSite/Organization/WebPage/LocalBusiness/Service/FAQPage/BreadcrumbList/ItemList), Open Graph & Twitter cards, a sitemap-index with per-region sitemaps, robots, Core Web Vitals, accessibility, local SEO & NAP, an SEO check script, and a pre-publish checklist. Use when building or auditing any page's SEO.
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO — Technical & On-Page SEO

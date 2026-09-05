@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-service-catalog
 description: Model the service/subservice catalog for a programmatic local-SEO lead-gen site (any niche) — grouping services into categories, canonical slugs, routing, where each service appears (overview, hub, money, location, mega menu), hub & money page specs, publishing rules, and a fixed batch writing order. Use when defining the service list, building service hubs, or selecting services for money pages.
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO Service Catalog

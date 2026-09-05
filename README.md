@@ -1,8 +1,10 @@
 # My Skills
 
-A personal **skills hub** — reusable [OpenCode](https://opencode.ai) skills that install into
-any project (or globally) with the official [`skills`](https://www.npmjs.com/package/skills) CLI —
-the npm package used for **every** skill action here (install, update, list, find, remove, init).
+A personal **skills hub** — reusable **agent skills** (standard `SKILL.md` format: works with
+OpenCode, Freebuff, Claude Code, Codex, Cursor, Windsurf, Cline, and 70+ other AI IDEs/agents)
+that install into any project (or globally) with the official
+[`skills`](https://www.npmjs.com/package/skills) CLI — the npm package used for **every**
+skill action here (install, update, list, find, remove, init).
 This repo is the single source of truth; it's pure Markdown (no build, no dependencies).
 
 The skills encode a repeatable system for building **programmatic local-SEO / rank-and-rent
@@ -26,19 +28,33 @@ lead-gen sites** (any service niche). They were distilled from the reference spe
 
 Requires [Node.js](https://nodejs.org) (for `npx`). No `npm install` needed — the CLI runs on demand.
 
+These skills are marked `internal: true` (kept off skills.sh), so every command below needs the
+`INSTALL_INTERNAL_SKILLS=1` prefix. Target agents with `-a '*'` (every agent you have installed)
+or list them explicitly (`-a opencode -a claude-code …`).
+
 ```bash
-# All skills, globally (available in every project)
-npx skills add 2eerr/my-skills -g -a opencode
+# All skills, globally, into every supported agent you have installed
+INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -g -a '*'
+
+# Only specific agents (e.g. OpenCode + Claude Code)
+INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -g -a opencode -a claude-code
 
 # Specific skills only
-npx skills add 2eerr/my-skills --skill programmatic-seo-autopilot --skill programmatic-seo-content-writing -g -a opencode
+INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills --skill programmatic-seo-autopilot --skill programmatic-seo-content-writing -g -a '*'
 
 # Into the current project only (writes to .agents/skills/, commit it with that project)
-npx skills add 2eerr/my-skills -a opencode
+INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -a '*'
 
 # Preview what's in the repo without installing
-npx skills add 2eerr/my-skills --list
+INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills --list
 ```
+
+> **Freebuff (freebuff.com):** not in the CLI's supported-agent list yet. Install to the
+> universal folder instead — `INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -a universal`
+> (project → `.agents/skills/`, global → `~/.config/agents/skills/`) — and reference the skills
+> from your project's `AGENTS.md` (e.g. "load the skills under `.agents/skills/` before SEO
+> work"), since Freebuff reads `AGENTS.md`. The skills are plain Markdown, so they work in any
+> agent that can read a `SKILL.md`.
 
 > **Private repo:** the CLI reuses your existing git auth (Windows Credential Manager / `gh` /
 > SSH), so no extra login is required.
@@ -53,7 +69,10 @@ npx skills update -p -y     # refresh project-scoped skills
 npx skills list -g          # see what's installed
 ```
 
-Updates take effect in **new** OpenCode sessions (no hot-reload).
+On a **new machine**: run the install once (any `npx skills add …` from above), then keep it
+current with `npx skills update -g -y` after each push.
+
+Updates take effect in **new** agent sessions (no hot-reload).
 
 ## skills CLI reference
 
@@ -62,7 +81,8 @@ the [`skills`](https://www.npmjs.com/package/skills) npm package
 ([npm](https://www.npmjs.com/package/skills) · [GitHub](https://github.com/vercel-labs/skills) ·
 the tool behind [skills.sh](https://skills.sh), current v1.5.23). It runs on demand via
 `npx skills …` — no global install needed. Examples use this repo (`2eerr/my-skills`); substitute
-any `owner/repo`.
+any `owner/repo`. Because this repo's skills are `internal: true`, prefix the examples that
+target it with `INSTALL_INTERNAL_SKILLS=1`.
 
 ### `skills add <source>` — install skills
 
@@ -169,10 +189,10 @@ npx skills init my-skill   # my-skill/SKILL.md
 
 ### Installation scope & method
 
-| Scope | Flag | Location (OpenCode) | Use |
+| Scope | Flag | Location (OpenCode / universal) | Use |
 |---|---|---|---|
-| Project | (default) | `./<agent>/skills/` → `.agents/skills/` | committed with the project, shared with team |
-| Global | `-g` | `~/<agent>/skills/` → `~/.config/opencode/skills/` | available in all projects |
+| Project | (default) | `.agents/skills/` | committed with the project, shared with team |
+| Global | `-g` | `~/.config/opencode/skills/` / `~/.config/agents/skills/` | available in all projects |
 
 **Method:** *Symlink* (default/recommended — one canonical copy, instant updates) or *Copy*
 (`--copy`, independent copies; use when symlinks are blocked, e.g. Windows without Developer
@@ -192,17 +212,21 @@ git add -A && git commit -m "..." && git push
 - `name`: 1–64 chars, lowercase alphanumeric + single hyphens (`^[a-z0-9]+(-[a-z0-9]+)*$`).
 - `description`: 1–1024 chars, specific — the agent uses it to decide when to load the skill.
 - Recognized frontmatter only: `name`, `description`, `license`, `compatibility`, `metadata`.
+- Every skill carries `metadata: internal: true` — hidden from skills.sh; installs need
+  `INSTALL_INTERNAL_SKILLS=1`.
 - File must be exactly `SKILL.md` (all caps).
-- Validate locally: `npx skills add . --list`.
+- Validate locally: `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list` (the skills are internal).
 
 ## Repo layout
 
 ```
 my-skills/
 ├── README.md
-├── plan.md            # the hosting/CLI decision record
-├── docs/              # reference specs the skills were distilled from (a sample niche)
-└── skills/            # the installable skills (auto-discovered by the CLI)
+├── AGENTS.md            # AI working instructions (rules, workflows, conventions)
+├── CHANGELOG.md         # chronological record of skill/doc changes
+├── templates/           # scaffolds (not discovered by the CLI)
+├── docs/                # reference specs the skills were distilled from (a sample niche)
+└── skills/              # the installable skills (auto-discovered by the CLI)
     └── programmatic-seo-*/SKILL.md
 ```
 
@@ -215,8 +239,10 @@ my-skills/
 | `INSTALL_INTERNAL_SKILLS=1` | Show/install skills marked `metadata.internal: true` |
 | `SKILLS_DOWNLOAD_MAX_BYTES` / `SKILLS_EXTRACT_MAX_BYTES` / `SKILLS_EXTRACT_MAX_FILES` | Size/count limits for direct-download & archive sources |
 
-- **Other agents:** swap `-a opencode` for `claude-code`, `cursor`, `codex`, etc., or `-a '*'`
-  for all — the CLI supports 70+ agents.
+- **Any agent:** these are standard `SKILL.md` skills — swap `-a opencode` for `claude-code`,
+  `cursor`, `codex`, `windsurf`, `cline`, etc., list several (`-a opencode -a claude-code`), or
+  use `-a '*'` for all detected agents — the CLI supports 70+ agents. Agents not yet in the list
+  (e.g. Freebuff) can use the universal `.agents/skills/` folder (see Install above).
 - **Updates take effect in new sessions** (no hot-reload).
 - **Naming collisions:** skill names must be unique across global + project locations.
 - Full upstream reference: [npm `skills`](https://www.npmjs.com/package/skills) ·

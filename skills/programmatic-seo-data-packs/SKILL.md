@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-data-packs
 description: Build a per-location local data pack before writing programmatic local-SEO content (any niche) — verified sources (census, geography/climate agencies, city sites, community forums), the fill-in template (geography, climate, housing/property stock, neighborhoods, institutions, ordinances, seasonal calendar, local problems, expert observations), a worked example, and the pre-writing checklist. Use when gathering the real local facts that make a location's pages unique.
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO Location Data Packs

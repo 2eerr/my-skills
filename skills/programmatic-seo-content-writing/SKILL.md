@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-content-writing
 description: Author unique, entity-rich, expert-voice SEO content pages for a programmatic local-SEO lead-gen site (any service niche) — money, location, region, service-hub, and core pages. Enforces the no-template/no-copy-paste rule, ≥90% uniqueness, entity floors, per-type word-count ranges, the markdown/UI formatting standard, AI-free & plagiarism-free rules, per-page specs, and the pre-ship quality gates. Use when writing or reviewing page copy for a rank-and-rent or service-area site.
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO Content Writing Standard

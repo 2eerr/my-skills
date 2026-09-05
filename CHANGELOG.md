@@ -23,6 +23,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   (`<type>/<kebab-slug>`), and a strictly linear history (rebase + `--ff-only`, no merge commits).
 
 ### Changed
+- Deleted `plan.md` — its unique content moved to `AGENTS.md` (new "Decisions (locked)" section:
+  official `skills` CLI only, GitHub as source of truth, public repo + internal skills; CLI
+  discovery rules) and `README.md` (new-machine propagate note, layout + validate fixes).
+- Generalized docs from OpenCode-only to **multi-agent** use (primary: OpenCode + Freebuff):
+  README + `AGENTS.md` install commands now use `-a '*'` / explicit agent lists, a Freebuff
+  workaround is documented (universal `.agents/skills/` folder + `AGENTS.md` pointer), and a new
+  golden rule keeps skills agent-agnostic. README install commands now carry
+  `INSTALL_INTERNAL_SKILLS=1` (required since the skills went internal).
+- Marked all 9 skills `metadata.internal: true` — hidden from `skills` CLI discovery and
+  normal installs (install with `INSTALL_INTERNAL_SKILLS=1`), so they no longer register on
+  skills.sh via install telemetry; GitHub stays public. `AGENTS.md` + the skill template now
+  require the flag on every skill, and `DISABLE_TELEMETRY=1` is a documented maintainer setting.
 - Generalized the original water-damage-specific skills into reusable `programmatic-seo-*`
   skills — brand, domain, service list, and analytics ID replaced with `{placeholders}` plus a
   "read the project config" step.

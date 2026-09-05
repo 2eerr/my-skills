@@ -1,6 +1,8 @@
 ---
 name: programmatic-seo-design-system
 description: A premium, trust-building UI/design system for a programmatic local-SEO lead-gen site (any niche) — brand voice, a token-based color system, typography pairing, spacing & layout, radius/shadows, core components, accessibility rules, and an image attribution/licensing practice. Use when building or styling site components and pages so content renders as a polished product page.
+metadata:
+  internal: true
 ---
 
 # Programmatic SEO Design System
