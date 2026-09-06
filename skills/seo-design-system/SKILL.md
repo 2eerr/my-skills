@@ -34,6 +34,8 @@ Define semantic tokens, not raw hexes, so any brand can drop in:
 **Contrast rules:** ink/body on light ≥4.5:1. Accent color only for non-essential accents, never
 body text. Pick text color on accent by measured contrast (not by habit). On dark surfaces use
 `--color-muted` or brighter, never mid-grays. Primary text on dark heroes is white.
+**Never invent raw hex values in components/pages — use the tokens** (Tailwind utilities +
+CSS variables only).
 
 ## Typography
 

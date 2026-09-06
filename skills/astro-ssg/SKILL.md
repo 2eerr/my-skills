@@ -26,6 +26,11 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
   Everything (canonicals, sitemap, robots, OG, JSON-LD) derives from it — changing the domain
   means updating it (+ the robots sitemap line) and rebuilding.
 - Global CSS, self-hosted fonts, favicon + apple-touch-icon in `public/`.
+- **Never gitignore `package.json`** — it is the project contract (deps, scripts, metadata).
+- **Throwaway helpers go in `temp/`** (audits, one-off fixers): tracked in git, never packaged
+  into the deploy zip, never deleted without the user asking. Real pipeline scripts live in
+  `scripts/`.
+- **No user-facing copy hardcoded in components** — all text lives in content files or data.
 
 ## 2. Data-driven routes (never hand-write page files)
 
@@ -36,6 +41,7 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
   - `src/pages/[region]/[location].astro` — location page
   - `src/pages/[region]/[location]/[...page].astro` — money page (location×service)
   - `src/pages/services/[service].astro` — service hub; plus core pages (`/about/`, `/faq/`, …)
+  - Astro rest params must be **named** — `[...page].astro` is valid, bare `[...].astro` is not.
 - Each route: look up the record from data, load its content file, and **gate publishing on the
   content** (see 4) — a route with no unique content must not render or ship.
 
@@ -87,19 +93,37 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
 
 ## 7. Build performance at scale (hundreds of thousands of pages)
 
-- **Keep templates light** — template cost multiplies across every rendered page; heavy
-  per-page logic is the top build-time driver. Reuse shared components (rule 5) instead of
-  inlining blocks per route.
+The content pipeline — not bundling — is the bottleneck at scale. Keep every mechanism below
+intact; each one has a "don't revert" reason:
+
+- **Lazy content reads** — the gate helper reads only the queried route's small frontmatter
+  chunk (e.g. first 512 bytes), memoized in-process. Never an eager recursive scan of the whole
+  content folder.
+- **Persistent content-index cache** (e.g. `node_modules/.cache/…json`) — every hit validated
+  by `statSync` (size + mtime) so content edits are always caught; written atomically on exit.
+  Turns a ~90s full validation into ~2s warm builds. Force a re-scan by deleting the cache file.
+- **Scope before completeness** — filter routes by build scope **before** running
+  region/city-completeness checks, so a scoped build never touches the full content index.
+- **Memoize hot data helpers** (completeness checks, visible-services, slugify) and serve
+  lookups from pre-built `Map`s (`citiesIn(region)`, `locationsByRegion(slug)` — O(1)) instead
+  of `.filter()` per call.
+- **One shared markdown processor** instance across all renders — never re-created per page.
+- **Parallelize post-build/gate scripts** (`fetchpriority` pass, SEO check, word-count check)
+  with `worker_threads` capped at `max(1, min(16, cpus))`; don't depend on `UV_THREADPOOL_SIZE`.
+- **Restrict Tailwind's `@source` scan to code dirs** and exclude the prose content folder —
+  scanning tens of thousands of `.md` files is pure overhead on every cold start.
+- **Keep templates light** — template cost multiplies across every rendered page; reuse shared
+  components (rule 5) instead of inlining blocks per route.
 - **One shared CSS bundle** (`cssCodeSplit: false`) — per-page CSS bundles explode at scale.
-- **SVG-first imagery** until real photos exist — bundled lightweight illustrations keep both
-  the build and the output small (see the image-SEO skill).
-- **Per-region sub-builds** when a full build is too slow: a `build:states`-style task renders
-  one region's routes at a time (same templates + data, filtered by region), so content
-  batches ship incrementally without rebuilding the whole site.
+- **SVG-first imagery** until real photos exist (see the image-SEO skill).
+- **Per-region sub-builds** when a full build is too slow: a `build:states`-style task sets a
+  scope env var read by `getStaticPaths()` (same templates + data, filtered); batch 3–5 regions
+  per run; never build the whole country in one go for iteration.
 - **Regenerate sitemaps without a full rebuild** — a `gen:sitemaps`-style task walks the
-  existing `dist/`.
+  existing `dist/`; `<lastmod>` stays per-file (source mtime), never one build timestamp.
 - Run every post-build pass (fetchpriority, sitemaps) on **all** build variants, including
   sub-builds and test builds.
+- Build on **Node LTS** (20/22) — non-LTS releases show higher bundler variance.
 - Scope note: runtime Core Web Vitals (LCP/INP/CLS, font preloading, critical CSS) belong to
   the technical-SEO skill — this section is about *build time* only.
 

@@ -83,3 +83,6 @@ npm run check:seo    # built-HTML enforcement (every batch gate)
   `astro-ssg` build-performance rules).
 - Any scope change (new page type, new service) must update plan + tracker + data in one
   commit, or counts silently drift.
+- **One doc per purpose.** Each project doc covers one topic completely (all SEO in one file,
+  all content in another); before creating a new doc, check whether it belongs in an existing
+  one — merge back anything that starts to scatter.

@@ -37,7 +37,9 @@ page it writes. If you are about to reuse text you already wrote — stop and re
 
 ## Phase 1 — Gather context (every time)
 
-1. Read all reference docs (`docs/*.md`) or load the sibling skills above.
+1. Read all reference docs (`docs/*.md`) or load the sibling skills above. Docs are a
+   **knowledge base, not an automation script** — if a doc contradicts the code or the user's
+   request, flag the discrepancy and ask; never mechanically execute a stale doc.
 2. Scan the content folder (`core/`, `hubs/`, regions, locations, money) to see what exists.
 
 ## Phase 1.5 — Only write unwritten pages
@@ -101,6 +103,10 @@ region page after all locations" todo plus a final tracker-sync todo.
 - Every tracker entry is `[x]` → report completion.
 - The user interrupts → stop and report where you left off.
 - A blocking error (build fails, data invalid) → report and ask how to proceed.
+
+When you stop for any reason, propose **5 concrete next steps** drawn from the project's
+current state (remaining batches, delivery gate, tracker sync, push) — suggestions only,
+never performed unprompted.
 
 ## Completion rules
 

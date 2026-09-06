@@ -34,8 +34,15 @@ npm run validate   # data sanity — 0 errors
 npm run check:seo  # 0 issues expected (page count = unique-content pages)
 ```
 
-(A word-count check enforces per-type ranges; the tracker generator re-derives statuses.
-Sitemap mechanics + regeneration tasks: `seo-technical-seo` / `astro-ssg`.)
+(A word-count check enforces per-type ranges; a mobile check loads key pages in headless
+Chrome at mobile widths and fails on horizontal overflow; the tracker generator re-derives
+statuses. Sitemap mechanics + regeneration tasks: `seo-technical-seo` / `astro-ssg`.)
+
+Also before calling a phase **done**: 5 random pages reviewed for non-thin content + valid
+links + the markdown/UI element floor, an accessibility pass (Lighthouse/axe 0 errors, focus
+rings, keyboard menus, contrast), and the **deploy-zip sync rule** — any script added to the
+build must also be listed in the packaging script's required files, so `dist/` and the source
+zip never drift.
 
 ## Deploy to a static host
 

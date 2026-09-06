@@ -1,6 +1,6 @@
 ---
 name: linear-git-workflow
-description: "Commit and publish work with a strict linear-history git workflow — never commit directly to the default branch; work on feature branches named `<type>/<kebab-slug>` (Conventional-Commits types); write short imperative commits that describe the actual change; integrate by rebasing each branch onto the default branch and fast-forwarding it with `git merge --ff-only` (no merge commits); then push the default branch. Use when committing, pushing, pulling, or merging branches in any repo that keeps protected-branch linear history (including repos whose AGENTS.md defines git!/push!-style shortcuts)."
+description: "Commit and publish work with a strict linear-history git workflow — never commit directly to the default branch; work on feature branches named `<type>/<kebab-slug>` (Conventional-Commits types); write short imperative commits that describe the actual change; integrate by rebasing each branch onto the default branch and fast-forwarding it with `git merge --ff-only` (no merge commits); then push the default branch. Covers multi-PC sync (pull at session start, never auto-push/merge/delete, conflict = ask, optional `dev` staging branch). Use when committing, pushing, pulling, or merging branches in any repo that keeps protected-branch linear history (including repos whose AGENTS.md defines git!/push!-style shortcuts)."
 metadata:
   internal: true
 ---
@@ -27,7 +27,8 @@ own instructions (e.g. its `AGENTS.md`) for repo-specific values first.
 2. **Branch naming:** `<type>/<kebab-slug>` where `<type>` is a Conventional-Commits type —
    `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `ci`, `style`, `build`. Keep the
    slug short and descriptive (e.g. `feat/add-data-pack-skill`, `fix/skill-frontmatter-colon`);
-   optionally prefix an issue number (`feat/123-…`).
+   optionally prefix an issue number (`feat/123-…`). Some repos extend the set (`hotfix/`,
+   `release/`, `design/`, `spike/`) — follow the repo's own list when it defines one.
 3. **Linear history, always:** the graph stays a single straight line — **no merge commits.**
    Integrate with rebase + `git merge --ff-only`; pull with `git pull --rebase`; never use
    `--no-ff`. Remote PRs land as squash- or rebase-merges.
@@ -62,6 +63,35 @@ Run in this exact order, keeping history linear:
 4. **Clean up:** delete only the local branches that merged successfully into `{default}` —
    `git branch --merged {default}` (excluding `{default}` itself); **never** delete unmerged
    branches.
+
+## Procedure — SYNC (multi-PC / shared remote)
+
+GitHub is the single source of truth when several machines work the same repo:
+
+- **Pull at the start of every session** — before reading, writing, or changing anything:
+  `git pull {remote} <branch>` or `git fetch {remote}` + `git merge --ff-only {remote}/<branch>`.
+  Always start new branches from the latest integration branch. Pulling is safe and expected —
+  never skip it.
+- **Conflicts: report, never auto-resolve.** List the conflicted files, ask how to resolve
+  (theirs / ours / manual), and let the user decide.
+- **Never run destructive git automatically** — no commit, push, merge, rebase, `reset --hard`,
+  or branch deletion unless the user explicitly asks (or triggers a defined shortcut).
+- **Remind after every commit** (don't push): "push `<branch>` when ready — keeps other PCs
+  in sync."
+- **Pinned remote URL avoids account pickers:** embed the username in the HTTPS remote
+  (`https://{owner}@github.com/{owner}/{repo}.git`) so the credential manager selects the
+  right account; it is a per-clone local setting and the username is public, not a secret.
+
+## Variant — two permanent branches (`{default}` + `{dev}`)
+
+Repos with an integration branch run the same discipline twice:
+
+- `{default}` = production, `{dev}` = integration/testing; **both are permanent, never deleted,
+  and the only branches ever pushed.** All work happens on topic branches cut from `{dev}`.
+- Flow: topic branch → rebase + `--ff-only` into `{dev}` → (only when the user approves)
+  `{dev}` → `--ff-only` into `{default}` → push both.
+- **`{dev}` is always at or ahead of `{default}`** — `{default}` must never hold a commit
+  `{dev}` lacks. The graph stays one straight line across both.
 
 ## Commands
 

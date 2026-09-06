@@ -7,6 +7,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 ## [Unreleased]
 
 ### Added
+- **docs/AGENTS.md conversion** (target-project operating file): concrete build-performance
+  mechanisms — lazy frontmatter reads, stat-validated content-index cache, scope-first
+  completeness, memoized/Map lookups, shared markdown processor, worker_threads passes,
+  Tailwind `@source` scoping, Node LTS (→ `astro-ssg` §7); named-rest-param + `temp/` +
+  package.json/copy rules (→ `astro-ssg`); multi-PC sync + never-auto-destructive git +
+  optional `dev` staging variant (→ `linear-git-workflow`); mobile check, a11y pass,
+  deploy-zip sync rule (→ `seo-deployment`); docs-are-knowledge-base + 5 follow-up
+  suggestions (→ `seo-autopilot`); no-invented-hexes (→ `seo-design-system`); one-doc-per-
+  purpose (→ `seo-site-blueprint`).
 - **Docs↔skills audit fixes:** added the missing coverage — E-E-A-T & off-page rules (→
   `seo-local-seo`), data-validation + never-hand-edit-JSON regeneration rules (→
   `seo-location-model`), responsive breakpoints + micro-interaction/reduced-motion rules (→
