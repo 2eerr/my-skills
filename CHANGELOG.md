@@ -7,29 +7,33 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 ## [Unreleased]
 
 ### Added
-- **SEO skill split** — `programmatic-seo-technical-seo` was "technical & on-page"; its content
-  is now four focused skills: `programmatic-seo-onpage-seo` (titles/meta/canonical/headings/
-  internal links/link equity/OG), `programmatic-seo-technical-seo` (URL architecture — sole
+- **`astro-ssg` skill** — all Astro-only instructions consolidated from the reference docs:
+  scaffold/config, `getStaticPaths()` data-driven routes, `Base.astro` head wiring, content-file
+  rendering + gates, component-first rule, `dist/` output quirks, post-build passes.
+  `seo-deployment`'s SSG note now points to it; autopilot sibling list updated.
+- **SEO skill split** — `seo-technical-seo` was "technical & on-page"; its content
+  is now four focused skills: `seo-onpage-seo` (titles/meta/canonical/headings/
+  internal links/link equity/OG), `seo-technical-seo` (URL architecture — sole
   owner of the trailing-slash scheme — sitemaps, robots, CWV, indexability, analytics, check
-  script), `programmatic-seo-local-seo` (local signals, GBP/citations, NAP, local KPIs), and
-  `programmatic-seo-image-seo` (self-hosting, SVG/WebP, width/height+alt+lazy, OG card,
+  script), `seo-local-seo` (local signals, GBP/citations, NAP, local KPIs), and
+  `seo-image-seo` (self-hosting, SVG/WebP, width/height+alt+lazy, OG card,
   licensing/attribution — consolidated from the SEO + design docs; design-system now points to
   it). Autopilot sibling list, schema/design-system cross-refs, README, and AGENTS updated.
-- **`programmatic-seo-schema` skill** — all JSON-LD instructions in one place: base graph,
+- **`seo-schema` skill** — all JSON-LD instructions in one place: base graph,
   per-page-type schema matrix, `@id` conventions, FAQPage-from-own-content-only,
   never-fabricate-reviews, LocalBusiness entity + NAP consistency, validation.
-  `programmatic-seo-technical-seo` §9 now points to it (no duplicated matrix); the autopilot
+  `seo-technical-seo` §9 now points to it (no duplicated matrix); the autopilot
   sibling list and README updated.
 - **`linear-git-workflow` skill** — the repo's git discipline generalized into a reusable,
   agent-agnostic skill: never commit to the default branch, `<type>/<kebab-slug>` feature
   branches, descriptive imperative commits, integrate via rebase + `git merge --ff-only`
   (linear history, no merge commits), then push; includes the commit/publish procedures,
   commands, checklist, and force-push gotchas.
-- **Skills (9):** `programmatic-seo-autopilot`, `programmatic-seo-content-writing`,
-  `programmatic-seo-technical-seo`, `programmatic-seo-keyword-architecture`,
-  `programmatic-seo-service-catalog`, `programmatic-seo-location-model`,
-  `programmatic-seo-data-packs`, `programmatic-seo-design-system`,
-  `programmatic-seo-deployment` — a niche-agnostic system for building programmatic
+- **Skills (9):** `seo-autopilot`, `seo-content-writing`,
+  `seo-technical-seo`, `seo-keyword-architecture`,
+  `seo-service-catalog`, `seo-location-model`,
+  `seo-data-packs`, `seo-design-system`,
+  `seo-deployment` — a niche-agnostic system for building
   local-SEO / rank-and-rent lead-gen sites.
 - **`README.md`** — overview, skills table, install/update, the full `skills` CLI command
   reference, environment variables, and npm-package attribution.
@@ -41,6 +45,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   (`<type>/<kebab-slug>`), and a strictly linear history (rebase + `--ff-only`, no merge commits).
 
 ### Changed
+- Renamed all SEO skills from `programmatic-seo-*` to `seo-*` (folders + frontmatter) and
+  removed the "Programmatic SEO" wording from every title, description, and doc — the system is
+  now branded simply `seo-*` alongside `linear-git-workflow`.
 - `docs/` is now **local-only**: added to `.gitignore`, untracked from git, purged from git
   history (filter-repo + force-push), and all README/AGENTS references reworded — the files stay
   on the maintainer's disk only.
@@ -56,7 +63,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   normal installs (install with `INSTALL_INTERNAL_SKILLS=1`), so they no longer register on
   skills.sh via install telemetry; GitHub stays public. `AGENTS.md` + the skill template now
   require the flag on every skill, and `DISABLE_TELEMETRY=1` is a documented maintainer setting.
-- Generalized the original water-damage-specific skills into reusable `programmatic-seo-*`
+- Generalized the original water-damage-specific skills into reusable `seo-*`
   skills — brand, domain, service list, and analytics ID replaced with `{placeholders}` plus a
   "read the project config" step.
 

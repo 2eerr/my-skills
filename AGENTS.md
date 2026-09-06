@@ -173,9 +173,9 @@ Notes:
 
 ## Current skills
 
-`programmatic-seo-autopilot`, `programmatic-seo-content-writing`,
-`programmatic-seo-onpage-seo`, `programmatic-seo-technical-seo`, `programmatic-seo-schema`,
-`programmatic-seo-local-seo`, `programmatic-seo-image-seo`,
-`programmatic-seo-keyword-architecture`, `programmatic-seo-service-catalog`,
-`programmatic-seo-location-model`, `programmatic-seo-data-packs`,
-`programmatic-seo-design-system`, `programmatic-seo-deployment`, `linear-git-workflow`.
+`seo-autopilot`, `seo-content-writing`,
+`seo-onpage-seo`, `seo-technical-seo`, `seo-schema`,
+`seo-local-seo`, `seo-image-seo`,
+`seo-keyword-architecture`, `seo-service-catalog`,
+`seo-location-model`, `seo-data-packs`,
+`seo-design-system`, `seo-deployment`, `astro-ssg`, `linear-git-workflow`.

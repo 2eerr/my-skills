@@ -7,7 +7,7 @@ that install into any project (or globally) with the official
 skill action here (install, update, list, find, remove, init).
 This repo is the single source of truth; it's pure Markdown (no build, no dependencies).
 
-The skills encode a repeatable system for building **programmatic local-SEO / rank-and-rent
+The skills encode a repeatable system for building **local-SEO / rank-and-rent
 lead-gen sites** (any service niche). They were distilled from the maintainer's reference specs
 (kept local-only in `docs/`, not published with the repo).
 
@@ -15,19 +15,20 @@ lead-gen sites** (any service niche). They were distilled from the maintainer's 
 
 | Skill | What it does |
 |---|---|
-| [`programmatic-seo-autopilot`](skills/programmatic-seo-autopilot/SKILL.md) | Orchestrator: write every missing page by hand, one at a time, honoring the tracker (claim a region → locations first → region page last). |
-| [`programmatic-seo-content-writing`](skills/programmatic-seo-content-writing/SKILL.md) | Content standard: ≥90% uniqueness, entity floors, expert voice, markdown/UI formatting, quality gates. |
-| [`programmatic-seo-onpage-seo`](skills/programmatic-seo-onpage-seo/SKILL.md) | On-page: titles/meta, canonical, headings, internal links & link equity, OG/Twitter. |
-| [`programmatic-seo-technical-seo`](skills/programmatic-seo-technical-seo/SKILL.md) | Technical: URL architecture, sitemaps, robots, Core Web Vitals, indexability, SEO check script. |
-| [`programmatic-seo-schema`](skills/programmatic-seo-schema/SKILL.md) | JSON-LD structured data: base graph, per-page schema matrix, `@id` rules, FAQPage/review guards, LocalBusiness/NAP, validation. |
-| [`programmatic-seo-local-seo`](skills/programmatic-seo-local-seo/SKILL.md) | Local: on-page local signals, GBP & citations, NAP consistency, local KPIs. |
-| [`programmatic-seo-image-seo`](skills/programmatic-seo-image-seo/SKILL.md) | Images: self-hosting, SVG/WebP, width/height+alt+lazy, OG card, licensing & attribution. |
-| [`programmatic-seo-keyword-architecture`](skills/programmatic-seo-keyword-architecture/SKILL.md) | Keyword patterns per page type, tiers, and the related-services internal-link map. |
-| [`programmatic-seo-service-catalog`](skills/programmatic-seo-service-catalog/SKILL.md) | Model the service/subservice list, categories, routing, hub/money specs, batch order. |
-| [`programmatic-seo-location-model`](skills/programmatic-seo-location-model/SKILL.md) | Geography hierarchy, demand filter, and content-gated publishing rules. |
-| [`programmatic-seo-data-packs`](skills/programmatic-seo-data-packs/SKILL.md) | Gather verified per-location local facts before writing. |
-| [`programmatic-seo-design-system`](skills/programmatic-seo-design-system/SKILL.md) | Theme-able premium UI system: tokens, typography, components, accessibility. |
-| [`programmatic-seo-deployment`](skills/programmatic-seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
+| [`seo-autopilot`](skills/seo-autopilot/SKILL.md) | Orchestrator: write every missing page by hand, one at a time, honoring the tracker (claim a region → locations first → region page last). |
+| [`seo-content-writing`](skills/seo-content-writing/SKILL.md) | Content standard: ≥90% uniqueness, entity floors, expert voice, markdown/UI formatting, quality gates. |
+| [`seo-onpage-seo`](skills/seo-onpage-seo/SKILL.md) | On-page: titles/meta, canonical, headings, internal links & link equity, OG/Twitter. |
+| [`seo-technical-seo`](skills/seo-technical-seo/SKILL.md) | Technical: URL architecture, sitemaps, robots, Core Web Vitals, indexability, SEO check script. |
+| [`seo-schema`](skills/seo-schema/SKILL.md) | JSON-LD structured data: base graph, per-page schema matrix, `@id` rules, FAQPage/review guards, LocalBusiness/NAP, validation. |
+| [`seo-local-seo`](skills/seo-local-seo/SKILL.md) | Local: on-page local signals, GBP & citations, NAP consistency, local KPIs. |
+| [`seo-image-seo`](skills/seo-image-seo/SKILL.md) | Images: self-hosting, SVG/WebP, width/height+alt+lazy, OG card, licensing & attribution. |
+| [`seo-keyword-architecture`](skills/seo-keyword-architecture/SKILL.md) | Keyword patterns per page type, tiers, and the related-services internal-link map. |
+| [`seo-service-catalog`](skills/seo-service-catalog/SKILL.md) | Model the service/subservice list, categories, routing, hub/money specs, batch order. |
+| [`seo-location-model`](skills/seo-location-model/SKILL.md) | Geography hierarchy, demand filter, and content-gated publishing rules. |
+| [`seo-data-packs`](skills/seo-data-packs/SKILL.md) | Gather verified per-location local facts before writing. |
+| [`seo-design-system`](skills/seo-design-system/SKILL.md) | Theme-able premium UI system: tokens, typography, components, accessibility. |
+| [`seo-deployment`](skills/seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
+| [`astro-ssg`](skills/astro-ssg/SKILL.md) | Astro mechanics: scaffold, getStaticPaths routes, Base layout, content rendering, components, build output. |
 | [`linear-git-workflow`](skills/linear-git-workflow/SKILL.md) | Commit/publish with linear history: feature branches `<type>/<slug>`, descriptive commits, rebase + `--ff-only`, push default branch. |
 
 ## Install
@@ -46,7 +47,7 @@ INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -g -a '*'
 INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -g -a opencode -a claude-code
 
 # Specific skills only
-INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills --skill programmatic-seo-autopilot --skill programmatic-seo-content-writing -g -a '*'
+INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills --skill seo-autopilot --skill seo-content-writing -g -a '*'
 
 # Into the current project only (writes to .agents/skills/, commit it with that project)
 INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -a '*'
@@ -96,7 +97,7 @@ target it with `INSTALL_INTERNAL_SKILLS=1`.
 ```bash
 npx skills add 2eerr/my-skills                                   # GitHub shorthand (owner/repo)
 npx skills add https://github.com/2eerr/my-skills                # full GitHub URL
-npx skills add https://github.com/2eerr/my-skills/tree/main/skills/programmatic-seo-autopilot  # direct path to one skill
+npx skills add https://github.com/2eerr/my-skills/tree/main/skills/seo-autopilot  # direct path to one skill
 npx skills add https://gitlab.com/org/repo                       # GitLab URL
 npx skills add git@github.com:2eerr/my-skills.git                # any git URL (SSH)
 npx skills add ./my-local-skills                                 # local path
@@ -121,9 +122,9 @@ npx skills add https://example.com/download/my-skill             # direct SKILL.
 npx skills add 2eerr/my-skills --list                            # preview, no install
 npx skills add 2eerr/my-skills -g -a opencode                    # all, global, OpenCode
 npx skills add 2eerr/my-skills -a opencode                       # all, into current project
-npx skills add 2eerr/my-skills --skill programmatic-seo-autopilot --skill programmatic-seo-content-writing -g -a opencode
+npx skills add 2eerr/my-skills --skill seo-autopilot --skill seo-content-writing -g -a opencode
 npx skills add 2eerr/my-skills --skill '*' -a claude-code        # all skills to one agent
-npx skills add 2eerr/my-skills --agent '*' --skill programmatic-seo-deployment   # one skill to all agents
+npx skills add 2eerr/my-skills --agent '*' --skill seo-deployment   # one skill to all agents
 npx skills add 2eerr/my-skills --all -y                          # everything to every agent (CI-friendly)
 npx skills add owner/repo --skill "Convex Best Practices"        # names with spaces must be quoted
 ```
@@ -133,8 +134,8 @@ npx skills add owner/repo --skill "Convex Best Practices"        # names with sp
 
 ### `skills use <source>` — run one skill without installing
 ```bash
-npx skills use 2eerr/my-skills@programmatic-seo-autopilot | claude
-npx skills use 2eerr/my-skills --skill programmatic-seo-autopilot --agent opencode
+npx skills use 2eerr/my-skills@seo-autopilot | claude
+npx skills use 2eerr/my-skills --skill seo-autopilot --agent opencode
 ```
 Resolves the source like `add`, writes the skill to a temp dir, and prints the generated prompt
 to stdout (or starts the agent interactively with `--agent`).
@@ -172,7 +173,7 @@ npx skills update -y                  # non-interactive (auto-detect scope)
 ### `skills remove [skills]` (`rm`) — uninstall
 ```bash
 npx skills remove                              # interactive picker
-npx skills remove programmatic-seo-deployment  # by name
+npx skills remove seo-deployment  # by name
 npx skills remove --global my-skill            # from global scope
 npx skills remove --agent cursor my-skill      # from specific agents
 npx skills remove --all                        # everything, no confirm
@@ -232,7 +233,7 @@ my-skills/
 ├── CHANGELOG.md         # chronological record of skill/doc changes
 ├── templates/           # scaffolds (not discovered by the CLI)
 └── skills/              # the installable skills (auto-discovered by the CLI)
-    ├── programmatic-seo-*/SKILL.md
+    ├── seo-*/SKILL.md
     └── linear-git-workflow/SKILL.md
 
 (docs/ — original reference specs — is local-only: gitignored, never pushed)
