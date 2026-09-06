@@ -1,16 +1,16 @@
 ---
-name: programmatic-seo-technical-seo
-description: "Technical SEO spec for a programmatic local-SEO lead-gen site (any niche) — the canonical trailing-slash URL architecture, sitemap-index with per-region sitemaps, robots and meta-robots, Core Web Vitals, indexability, analytics injection, and the SEO check script that enforces delivery. Use when building routes/sitemaps or auditing site-level technical SEO. Titles/meta/headings/links: see on-page skill; JSON-LD: schema skill; NAP/GBP: local skill."
+name: seo-technical-seo
+description: "Technical SEO spec for a local-SEO lead-gen site (any niche) — the canonical trailing-slash URL architecture, sitemap-index with per-region sitemaps, robots and meta-robots, Core Web Vitals, indexability, analytics injection, and the SEO check script that enforces delivery. Use when building routes/sitemaps or auditing site-level technical SEO. Titles/meta/headings/links: see on-page skill; JSON-LD: schema skill; NAP/GBP: local skill."
 metadata:
   internal: true
 ---
 
-# Programmatic SEO — Technical SEO
+# Technical SEO
 
 Site-level technical rules the build and the SEO check script enforce. Siblings own the rest:
-`programmatic-seo-onpage-seo` (titles, metas, canonicals, headings, links, OG),
-`programmatic-seo-schema` (JSON-LD), `programmatic-seo-local-seo` (GBP/NAP),
-`programmatic-seo-image-seo` (images), `programmatic-seo-design-system` (component a11y).
+`seo-onpage-seo` (titles, metas, canonicals, headings, links, OG),
+`seo-schema` (JSON-LD), `seo-local-seo` (GBP/NAP),
+`seo-image-seo` (images), `seo-design-system` (component a11y).
 
 ## 1. URL structure (canonical architecture — single source of truth)
 

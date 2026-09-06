@@ -1,11 +1,11 @@
 ---
-name: programmatic-seo-design-system
-description: A premium, trust-building UI/design system for a programmatic local-SEO lead-gen site (any niche) — brand voice, a token-based color system, typography pairing, spacing & layout, radius/shadows, core components, accessibility rules, and an image attribution/licensing practice. Use when building or styling site components and pages so content renders as a polished product page.
+name: seo-design-system
+description: A premium, trust-building UI/design system for a local-SEO lead-gen site (any niche) — brand voice, a token-based color system, typography pairing, spacing & layout, radius/shadows, core components, accessibility rules, and an image attribution/licensing practice. Use when building or styling site components and pages so content renders as a polished product page.
 metadata:
   internal: true
 ---
 
-# Programmatic SEO Design System
+# SEO Design System
 
 Single source of truth for look & feel. Content is rendered through these styles, so pages must
 render as a premium product page, never a pasted document. Tokens are theme-able — set the
@@ -68,6 +68,6 @@ outside-click/Escape + manages focus, contrast ≥4.5:1. Keep a manual WCAG chec
 
 ## Images
 
-Owned by the sibling skill **`programmatic-seo-image-seo`** — self-hosting, formats (SVG/WebP),
+Owned by the sibling skill **`seo-image-seo`** — self-hosting, formats (SVG/WebP),
 width/height + alt + lazy-loading, standard sizes, OG card, and the freely-licensed
 attribution practice. Components render per that spec; do not restate image rules here.

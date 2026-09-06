@@ -1,13 +1,13 @@
 ---
-name: programmatic-seo-schema
-description: "Structured data (JSON-LD) spec for a programmatic local-SEO lead-gen site (any service niche) — the base graph (WebSite + Organization + WebPage) every page ships, the per-page-type schema matrix (LocalBusiness, Service, FAQPage, BreadcrumbList, ItemList, AboutPage/ContactPage), consistent `@id` referencing, FAQPage emitted only from a page's own unique FAQs, the never-fabricate-reviews rule, LocalBusiness entity + NAP consistency, and post-build validation. Use when authoring, editing, or auditing any page's JSON-LD structured data."
+name: seo-schema
+description: "Structured data (JSON-LD) spec for a local-SEO lead-gen site (any service niche) — the base graph (WebSite + Organization + WebPage) every page ships, the per-page-type schema matrix (LocalBusiness, Service, FAQPage, BreadcrumbList, ItemList, AboutPage/ContactPage), consistent `@id` referencing, FAQPage emitted only from a page's own unique FAQs, the never-fabricate-reviews rule, LocalBusiness entity + NAP consistency, and post-build validation. Use when authoring, editing, or auditing any page's JSON-LD structured data."
 metadata:
   internal: true
 ---
 
-# Programmatic SEO Structured Data (JSON-LD)
+# SEO Structured Data (JSON-LD)
 
-The single authoritative schema spec for a programmatic local-SEO site (any service niche).
+The single authoritative schema spec for a local-SEO site (any service niche).
 Every generated and hand-written page's structured data follows this file — no other skill or
 doc restates the matrix. Read the project's config for brand, domain, and NAP — never hardcode.
 

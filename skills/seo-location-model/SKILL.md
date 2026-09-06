@@ -1,11 +1,11 @@
 ---
-name: programmatic-seo-location-model
-description: Model the geographic coverage for a programmatic local-SEO lead-gen site (any niche) — region/location hierarchy, a population (or demand) filter for qualifying locations, regions/grouping, the location data files, and the content-gated publishing rules (whole-region vs per-location vs per-hub). Use when generating or validating region/location pages for a rank-and-rent site.
+name: seo-location-model
+description: Model the geographic coverage for a local-SEO lead-gen site (any niche) — region/location hierarchy, a population (or demand) filter for qualifying locations, regions/grouping, the location data files, and the content-gated publishing rules (whole-region vs per-location vs per-hub). Use when generating or validating region/location pages for a rank-and-rent site.
 metadata:
   internal: true
 ---
 
-# Programmatic SEO Location Model
+# SEO Location Model
 
 Single source of truth for "where do we cover." Generalizes to any geography: US
 state→city, country→metro, province→town, etc.

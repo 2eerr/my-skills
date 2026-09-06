@@ -1,11 +1,11 @@
 ---
-name: programmatic-seo-keyword-architecture
-description: Keyword architecture for a programmatic local-SEO lead-gen site (any niche) — money-keyword patterns per page type, the three keyword tiers (primary/secondary/long-tail) with max-uses-per-page, how to build per-service keyword sets from research tools, cross-service and informational/FAQ keyword opportunities, and the related-services internal-linking map. Use when choosing target keywords or internal links for a page.
+name: seo-keyword-architecture
+description: Keyword architecture for a local-SEO lead-gen site (any niche) — money-keyword patterns per page type, the three keyword tiers (primary/secondary/long-tail) with max-uses-per-page, how to build per-service keyword sets from research tools, cross-service and informational/FAQ keyword opportunities, and the related-services internal-linking map. Use when choosing target keywords or internal links for a page.
 metadata:
   internal: true
 ---
 
-# Programmatic SEO Keyword Architecture
+# SEO Keyword Architecture
 
 Master keyword inventory by page type. The slug is the canonical URL segment; the title is the
 human page name. Populate the per-service sets from the project's keyword research

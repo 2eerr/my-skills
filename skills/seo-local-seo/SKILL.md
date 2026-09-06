@@ -1,11 +1,11 @@
 ---
-name: programmatic-seo-local-seo
-description: "Local SEO playbook for a programmatic local-SEO lead-gen site (any service niche) — local on-page signals per city/region page, the LocalBusiness entity handoff to the schema skill, Google Business Profile and citation rules, NAP consistency, and local KPIs. Use when making a page compete in a specific area's results, or setting up post-launch local presence."
+name: seo-local-seo
+description: "Local SEO playbook for a local-SEO lead-gen site (any service niche) — local on-page signals per city/region page, the LocalBusiness entity handoff to the schema skill, Google Business Profile and citation rules, NAP consistency, and local KPIs. Use when making a page compete in a specific area's results, or setting up post-launch local presence."
 metadata:
   internal: true
 ---
 
-# Programmatic SEO — Local SEO
+# Local SEO
 
 How each location and money page competes in its area's organic + map results on a
 rank-and-rent lead-gen site (any service niche). Every money page targets a local commercial
@@ -27,7 +27,7 @@ config for brand + NAP — never hardcode.
 ## 2. LocalBusiness entity (markup owned by the schema skill)
 
 - The canonical local entity and its JSON-LD (`@type`, `@id`, `areaServed`, NAP fields,
-  extension rules) live in `programmatic-seo-schema` — apply it, don't restate it.
+  extension rules) live in `seo-schema` — apply it, don't restate it.
 - This skill owns the **real-world side**: the NAP values fed into that entity must match the
   site config, footer, and every citation exactly.
 

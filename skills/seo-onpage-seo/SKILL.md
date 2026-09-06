@@ -1,16 +1,16 @@
 ---
-name: programmatic-seo-onpage-seo
-description: "On-page SEO spec for a programmatic local-SEO lead-gen site (any service niche) — title/meta patterns, canonical and heading rules, the non-thin gate, internal-linking and link-equity rules for the hub-and-spoke, and Open Graph & Twitter card wiring. Use when writing or auditing a page's own HTML head, headings, links, and social cards."
+name: seo-onpage-seo
+description: "On-page SEO spec for a local-SEO lead-gen site (any service niche) — title/meta patterns, canonical and heading rules, the non-thin gate, internal-linking and link-equity rules for the hub-and-spoke, and Open Graph & Twitter card wiring. Use when writing or auditing a page's own HTML head, headings, links, and social cards."
 metadata:
   internal: true
 ---
 
-# Programmatic SEO — On-Page SEO
+# On-Page SEO
 
-Per-page on-page rules for a programmatic local-SEO site (any niche). Apply to every generated
+Per-page on-page rules for a local-SEO site (any niche). Apply to every generated
 and hand-written page. Read the project's config for brand + domain — never hardcode. URL
-architecture and the canonical trailing-slash scheme are owned by `programmatic-seo-technical-seo`;
-JSON-LD by `programmatic-seo-schema`; copy quality by `programmatic-seo-content-writing`.
+architecture and the canonical trailing-slash scheme are owned by `seo-technical-seo`;
+JSON-LD by `seo-schema`; copy quality by `seo-content-writing`.
 
 ## 1. Titles
 

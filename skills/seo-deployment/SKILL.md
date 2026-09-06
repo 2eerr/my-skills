@@ -1,11 +1,11 @@
 ---
-name: programmatic-seo-deployment
-description: "Build-and-publish workflow for a programmatic local-SEO lead-gen site (any niche) built as a static site — the content gate (unique: true) that makes the build equal publishing, the delivery-gate validation scripts (data, SEO, word-count checks), sitemap generation, static-host upload, cache headers, and source-zip packaging. Use when shipping newly-written content or deploying a static Astro/SSG site."
+name: seo-deployment
+description: "Build-and-publish workflow for a local-SEO lead-gen site (any niche) built as a static site — the content gate (unique: true) that makes the build equal publishing, the delivery-gate validation scripts (data, SEO, word-count checks), sitemap generation, static-host upload, cache headers, and source-zip packaging. Use when shipping newly-written content or deploying a static Astro/SSG site."
 metadata:
   internal: true
 ---
 
-# Programmatic SEO Deployment (static build)
+# SEO Deployment (static build)
 
 For a static-site-generator build (e.g. Astro): the build renders everything into `dist/`, and
 that folder **is** the entire site. Deploy as a static upload to any host (Hostinger, Netlify,
@@ -60,6 +60,6 @@ A `zip`-style task can package source files (via a small script) for remote buil
 
 ## SSG output note
 
-Astro emits `index.html` per route, so web servers serve both `/foo` and `/foo/` with no
-redirect rules. Keep CSS code-splitting off (`cssCodeSplit: false`) if the project relies on a
-single shared bundle.
+Framework mechanics (Astro route output, `cssCodeSplit: false`, `public/` copy, post-build
+passes) are owned by the **`astro-ssg`** skill — apply them there. This skill owns the
+build-as-publish gate and the deploy workflow.

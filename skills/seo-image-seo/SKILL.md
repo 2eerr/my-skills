@@ -1,11 +1,11 @@
 ---
-name: programmatic-seo-image-seo
-description: "Image rules for a programmatic local-SEO lead-gen site (any niche) — self-hosting, formats (SVG icons/illustrations, WebP photos), width/height + alt + lazy-loading, unique-per-page imagery, the OG social card, and the freely-licensed image attribution practice. Use when adding, optimizing, or auditing any image or icon on the site."
+name: seo-image-seo
+description: "Image rules for a local-SEO lead-gen site (any niche) — self-hosting, formats (SVG icons/illustrations, WebP photos), width/height + alt + lazy-loading, unique-per-page imagery, the OG social card, and the freely-licensed image attribution practice. Use when adding, optimizing, or auditing any image or icon on the site."
 metadata:
   internal: true
 ---
 
-# Programmatic SEO — Image SEO & Licensing
+# Image SEO & Licensing
 
 All image rules in one place: performance, accessibility, SEO, and licensing. Applies whether
 the site renders photos now or adds them later. Component styling of images lives in the

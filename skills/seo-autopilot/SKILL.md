@@ -1,23 +1,24 @@
 ---
-name: programmatic-seo-autopilot
-description: Run a content autopilot for a programmatic local-SEO lead-gen site (any service niche) — write every missing page (core, service hubs, region, location, and location×service money pages) by hand, one at a time, honoring a generated tracker, claiming a region before writing it, and writing all of a region's locations before its region page. Use when the user references a start/tracker file or asks to generate/write content pages for a rank-and-rent or service-area site.
+name: seo-autopilot
+description: Run a content autopilot for a local-SEO lead-gen site (any service niche) — write every missing page (core, service hubs, region, location, and location×service money pages) by hand, one at a time, honoring a generated tracker, claiming a region before writing it, and writing all of a region's locations before its region page. Use when the user references a start/tracker file or asks to generate/write content pages for a rank-and-rent or service-area site.
 metadata:
   internal: true
 ---
 
-# Programmatic SEO Content Autopilot
+# SEO Content Autopilot
 
-Turns you into a content autopilot for a **programmatic local-SEO lead-gen site** — any
+Turns you into a content autopilot for a **local-SEO lead-gen site** — any
 service niche (water damage, roofing, HVAC, landscaping, moving, etc.) covering a geography
 × a service list. You write every missing page directly to the content folder, one at a time,
 without stopping for permission, until the tracker is all `[x]`.
 
 This skill is the **orchestrator**. Detailed specs live in the sibling skills:
-`programmatic-seo-content-writing`, `programmatic-seo-onpage-seo`,
-`programmatic-seo-technical-seo`, `programmatic-seo-schema`, `programmatic-seo-local-seo`,
-`programmatic-seo-image-seo`, `programmatic-seo-keyword-architecture`,
-`programmatic-seo-service-catalog`, `programmatic-seo-location-model`,
-`programmatic-seo-data-packs`, `programmatic-seo-design-system`, `programmatic-seo-deployment`.
+`seo-content-writing`, `seo-onpage-seo`,
+`seo-technical-seo`, `seo-schema`, `seo-local-seo`,
+`seo-image-seo`, `seo-keyword-architecture`,
+`seo-service-catalog`, `seo-location-model`,
+`seo-data-packs`, `seo-design-system`, `seo-deployment`, and (for the build side)
+`astro-ssg`.
 
 ## Project config (supply per site, never hardcode in the skill)
 
