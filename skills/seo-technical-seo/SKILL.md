@@ -34,9 +34,8 @@ Site-level technical rules the build and the SEO check script enforce. Siblings 
 - `<lastmod>` = the content file's actual mtime (auto-synced; never hand-edited). Omit
   `changefreq`/`priority` — Google ignores them.
 - Each child ≤50,000 URLs / ≤50MB (sitemaps.org protocol); URLs sorted for deterministic output.
-- The build runs the generator automatically; a `gen:sitemaps`-style task regenerates from
-  existing output without a full build. Total sitemap URL count must equal the rendered page
-  count exactly (script-compared).
+- The build runs the generator automatically (see `astro-ssg` for the sitemap-only regen task).
+- Total sitemap URL count must equal the rendered page count exactly (script-compared).
 
 ## 3. Robots & meta-robots
 
@@ -48,12 +47,10 @@ Site-level technical rules the build and the SEO check script enforce. Siblings 
 ## 4. Performance (Core Web Vitals)
 
 - Targets: LCP < 2.5s, INP < 200ms, CLS < 0.1 (aim CLS ≈ 0).
-- Self-hosted woff2 fonts, preloaded with `fetchpriority="high"`; the bundled CSS `<link>` also
-  gets `fetchpriority="high"` (post-build pass). `font-display: swap` +
-  `size-adjust`/`ascent-override`/`descent-override` fallback metrics → zero layout shift on
-  swap.
-- Images declare width/height and lazy-load (see the image skill). Minify HTML/CSS/JS; inline
-  critical CSS; no render-blocking third-party scripts above the fold.
+- Font loading/preloading and zero-CLS fallback metrics follow the **design-system** skill's
+  typography rules; the Astro wiring + post-build `fetchpriority` pass live in **`astro-ssg`**.
+- Images declare width/height and lazy-load per the **image-SEO** skill. Minify HTML/CSS/JS;
+  inline critical CSS; no render-blocking third-party scripts above the fold.
 
 ## 5. Indexability & crawling
 

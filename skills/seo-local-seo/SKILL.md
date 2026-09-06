@@ -1,6 +1,6 @@
 ---
 name: seo-local-seo
-description: "Local SEO playbook for a local-SEO lead-gen site (any service niche) — local on-page signals per city/region page, the LocalBusiness entity handoff to the schema skill, Google Business Profile and citation rules, NAP consistency, and local KPIs. Use when making a page compete in a specific area's results, or setting up post-launch local presence."
+description: "Local SEO playbook for a local-SEO lead-gen site (any service niche) — local on-page signals per city/region page, the LocalBusiness entity handoff to the schema skill, Google Business Profile and citation rules, NAP consistency, E-E-A-T and off-page link targets, and local KPIs. Use when making a page compete in a specific area's results, or setting up post-launch local presence."
 metadata:
   internal: true
 ---
@@ -21,8 +21,7 @@ config for brand + NAP — never hardcode.
   Population/demand numbers are internal-only — never featured.
 - **Localized FAQ set:** questions a local homeowner actually asks (county, weather,
   neighborhood, insurance), unique per page.
-- **Local internal links:** location page → region + ≥8 service pages; money page → ≥6 related
-  services in the same location + location + region + one nearby location (see on-page skill).
+- **Local internal links:** per the counts in `seo-onpage-seo` (location ↔ region ↔ money hub-and-spoke).
 
 ## 2. LocalBusiness entity (markup owned by the schema skill)
 
@@ -47,7 +46,23 @@ config for brand + NAP — never hardcode.
 - NAP (name/address/phone) identical across site, footer, schema, GBP, and citations.
 - Local/tracking phone configurable per location in the project config (placeholder until real).
 
-## 5. Local KPIs
+## 5. E-E-A-T & off-page
+
+- **Experience/Expertise:** every page reads like a licensed local practitioner (expert voice
+  rule: `seo-content-writing`); the Organization/LocalBusiness entity + About/Contact trust
+  pages back it (markup: `seo-schema`).
+- **Authoritativeness:** earn links/citations from local home-service directories, local news,
+  community sites, supplier "find a pro" pages, and business roundups. Anchor text descriptive
+  and varied — never exact-match spam.
+- **Trust:** HTTPS, clear privacy/terms, accurate NAP, no fabricated reviews/stats; legitimate
+  reviews (once real) may feed rating schema.
+- Internal links carry most equity in the rank-and-rent model (on-page skill) — external links
+  are a supplement, not the engine.
+- Service hubs are the topical-authority pages (see `seo-service-catalog`).
+- **Brand/entity consistency:** the brand name never varies; Organization schema name/URL/logo
+  match the visible site.
+
+## 6. Local KPIs
 
 - Each money page ranks for its exact `{Service} in {Location}, {Region}` query.
 - Location pages surface in local organic/map results for `{primary service} {Location}`.

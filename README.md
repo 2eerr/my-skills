@@ -16,11 +16,12 @@ lead-gen sites** (any service niche). They were distilled from the maintainer's 
 | Skill | What it does |
 |---|---|
 | [`seo-autopilot`](skills/seo-autopilot/SKILL.md) | Orchestrator: write every missing page by hand, one at a time, honoring the tracker (claim a region → locations first → region page last). |
+| [`seo-site-blueprint`](skills/seo-site-blueprint/SKILL.md) | Phased build plan from zero: data → scaffold → pilot region → batched rollout → SEO layer → QA/launch → post-launch, with gates + scope discipline. |
 | [`seo-content-writing`](skills/seo-content-writing/SKILL.md) | Content standard: ≥90% uniqueness, entity floors, expert voice, markdown/UI formatting, quality gates. |
 | [`seo-onpage-seo`](skills/seo-onpage-seo/SKILL.md) | On-page: titles/meta, canonical, headings, internal links & link equity, OG/Twitter. |
 | [`seo-technical-seo`](skills/seo-technical-seo/SKILL.md) | Technical: URL architecture, sitemaps, robots, Core Web Vitals, indexability, SEO check script. |
 | [`seo-schema`](skills/seo-schema/SKILL.md) | JSON-LD structured data: base graph, per-page schema matrix, `@id` rules, FAQPage/review guards, LocalBusiness/NAP, validation. |
-| [`seo-local-seo`](skills/seo-local-seo/SKILL.md) | Local: on-page local signals, GBP & citations, NAP consistency, local KPIs. |
+| [`seo-local-seo`](skills/seo-local-seo/SKILL.md) | Local: on-page local signals, GBP & citations, NAP consistency, E-E-A-T/off-page, local KPIs. |
 | [`seo-image-seo`](skills/seo-image-seo/SKILL.md) | Images: self-hosting, SVG/WebP, width/height+alt+lazy, OG card, licensing & attribution. |
 | [`seo-keyword-architecture`](skills/seo-keyword-architecture/SKILL.md) | Keyword patterns per page type, tiers, and the related-services internal-link map. |
 | [`seo-service-catalog`](skills/seo-service-catalog/SKILL.md) | Model the service/subservice list, categories, routing, hub/money specs, batch order. |
@@ -28,7 +29,7 @@ lead-gen sites** (any service niche). They were distilled from the maintainer's 
 | [`seo-data-packs`](skills/seo-data-packs/SKILL.md) | Gather verified per-location local facts before writing. |
 | [`seo-design-system`](skills/seo-design-system/SKILL.md) | Theme-able premium UI system: tokens, typography, components, accessibility. |
 | [`seo-deployment`](skills/seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
-| [`astro-ssg`](skills/astro-ssg/SKILL.md) | Astro mechanics: scaffold, getStaticPaths routes, Base layout, content rendering, components, build output. |
+| [`astro-ssg`](skills/astro-ssg/SKILL.md) | Astro mechanics: scaffold, getStaticPaths routes, Base layout, content rendering, components, build output + build-time performance at scale. |
 | [`linear-git-workflow`](skills/linear-git-workflow/SKILL.md) | Commit/publish with linear history: feature branches `<type>/<slug>`, descriptive commits, rebase + `--ff-only`, push default branch. |
 
 ## Install

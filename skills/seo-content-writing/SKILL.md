@@ -46,7 +46,8 @@ Read the project's config for brand, domain, niche, and service list — never h
 - **Service hub** — 1,500–2,500 words · ≥15 entities · ≥3 FAQs. What it is → signs → how →
   cost table → DIY vs pro → prevention → FAQ → links to top regions/locations.
 - **Core pages** — home 1,000–1,800 (complementary prose, must not duplicate template
-  components); about ≥500; contact ≥200; faq ≥500; services overview ≥300; privacy/terms legal.
+  components); about 500–900; contact 250–500; faq 800–1,500; services overview ≥300;
+  locations index + privacy/terms exempt (short index / legal).
 
 ## Long-tail subservices (every money page)
 
@@ -106,10 +107,18 @@ H2 with <2 sentences, paragraphs standing in for lists.
 
 ## Keyword frequency (per page)
 
-- Money keyword `{Service} in {Location}, {Region}` → H1 + first paragraph, **4–5× max**.
-- Primary keyword → H1, first paragraph, ≥1 H2, **4–5× max**.
-- Secondary/long-tail → H2/H3 + body, **1–2× each**, 4–6 distinct phrases.
-- Density natural (0.5–1.5%). Exact-match money keyword in H1 + intro + one H2 + one FAQ.
+Tier definitions, placement, and max-uses caps are owned by `seo-keyword-architecture` — apply
+its table while writing. Hard reminders: exact-match money keyword in H1 + intro + one H2 + one
+FAQ; density natural (0.5–1.5%); if a phrase exceeds its cap, rephrase — never stuff.
+
+## Author prompt (per page skeleton)
+
+Before writing a page, fill this from its data pack + keyword data (never leave fields empty):
+`TYPE · TARGET PAGE · MAIN KEYWORD · LOCATION/COUNTY/REGION · SUB-SERVICE · MICRO-NICHE +
+SECONDARY KEYWORDS · LOCAL FACTS · LOCAL-EXPERT SPECIFICS (3–5) · LOCAL-AREA FACTS (3–5) ·
+AUDIENCE · TONE`. Requirements: one H1 = main keyword; varied section lineup; local pricing
+table; 3–9 unique Q&As; ≥15 named entities; 3–5 long-tail subservices; ≥90% unique; expert
+voice; UI floor per type; natural CTA; invent nothing (no fake prices/reviews/licenses).
 
 ## File format
 

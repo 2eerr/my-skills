@@ -1,6 +1,6 @@
 ---
 name: astro-ssg
-description: "Astro framework mechanics for building a data-driven static lead-gen site — project scaffold (JS + Tailwind, no TypeScript), astro.config.mjs, JSON data with getStaticPaths() routes, the Base.astro head wiring (canonical/OG/meta-robots/font preload/analytics), content-file rendering via a PageContent component, the component-first rule, dist/ output quirks, and post-build passes. Use when scaffolding, routing, templating, or building with Astro (or adapting the patterns to another SSG)."
+description: "Astro framework mechanics for building a data-driven static lead-gen site — project scaffold (JS + Tailwind, no TypeScript), astro.config.mjs, JSON data with getStaticPaths() routes, the Base.astro head wiring (canonical/OG/meta-robots/font preload/analytics), content-file rendering via a PageContent component, the component-first rule, dist/ output quirks, post-build passes, and build-time performance at scale (light templates, single CSS bundle, per-region sub-builds). Use when scaffolding, routing, templating, or building with Astro (or adapting the patterns to another SSG)."
 metadata:
   internal: true
 ---
@@ -41,15 +41,15 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
 
 ## 3. Base layout & head wiring (`src/layouts/Base.astro`)
 
-- One base layout for every page: `<title>`/meta description (overridable per page), absolute
-  canonical built as `new URL(pathname, SITE.domain)` with pathname normalized to the trailing-
-  slash scheme (root stays `/`); `og:url` and the `WebPage.url` JSON-LD node reuse that value.
-- JSON-LD `@graph` wiring per the schema skill (base nodes in the layout, page nodes per route).
-- `<meta name="robots">` + `referrer` per the technical-SEO skill; OG/Twitter defaults set here,
-  pages override title/description only.
-- Preload both self-hosted woff2 fonts with `fetchpriority="high"`; `font-display: swap` +
-  fallback metrics so the swap causes zero CLS.
-- Analytics script injected **only** when `import.meta.env.PROD` and the config ID is set.
+- One base layout for every page; it **implements** the rules owned elsewhere — title/meta
+  patterns + OG/Twitter (`seo-onpage-seo`), canonical/robots values (`seo-onpage-seo` +
+  `seo-technical-seo`), JSON-LD `@graph` (`seo-schema`), font loading (`seo-design-system`).
+- Astro mechanics owned here:
+  - Canonical built as `new URL(pathname, SITE.domain)` with pathname normalized to the
+    trailing-slash scheme (root stays `/`); `og:url` and `WebPage.url` reuse that one value.
+  - Page-level overrides flow through layout props/slots — pages set title/description/FAQs,
+    never re-emit head tags.
+  - Analytics script injected **only** when `import.meta.env.PROD` and the config ID is set.
 
 ## 4. Content-file rendering
 
@@ -74,7 +74,7 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
 - Conditional rendering in component frontmatter (e.g. menus hidden until content exists) —
   data-driven, no code changes when content ships.
 - Keep pages static: client JS only for small interactions (menu toggle, scroll listeners) in
-  plain inline `<script>` — respect `prefers-reduced-motion`.
+  plain inline `<script>` — motion/interaction rules belong to the design-system skill.
 
 ## 6. Build output & post-build passes
 
@@ -84,6 +84,24 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
 - Post-build passes (npm scripts): sitemap generator (replaces `@astrojs/sitemap`; walks
   `dist/`, so only published pages appear) and a `fetchpriority` pass on the bundled CSS link.
 - Dev parity: gates apply identically in `npm run dev` and production builds.
+
+## 7. Build performance at scale (hundreds of thousands of pages)
+
+- **Keep templates light** — template cost multiplies across every rendered page; heavy
+  per-page logic is the top build-time driver. Reuse shared components (rule 5) instead of
+  inlining blocks per route.
+- **One shared CSS bundle** (`cssCodeSplit: false`) — per-page CSS bundles explode at scale.
+- **SVG-first imagery** until real photos exist — bundled lightweight illustrations keep both
+  the build and the output small (see the image-SEO skill).
+- **Per-region sub-builds** when a full build is too slow: a `build:states`-style task renders
+  one region's routes at a time (same templates + data, filtered by region), so content
+  batches ship incrementally without rebuilding the whole site.
+- **Regenerate sitemaps without a full rebuild** — a `gen:sitemaps`-style task walks the
+  existing `dist/`.
+- Run every post-build pass (fetchpriority, sitemaps) on **all** build variants, including
+  sub-builds and test builds.
+- Scope note: runtime Core Web Vitals (LCP/INP/CLS, font preloading, critical CSS) belong to
+  the technical-SEO skill — this section is about *build time* only.
 
 ## Commands
 
@@ -101,6 +119,7 @@ npm run preview      # serve the built dist/ locally
 - [ ] Content files render through `PageContent`; unpublished pages don't build.
 - [ ] Every repeated UI block is a component; no inline copies.
 - [ ] Build output: single CSS bundle (code-split off), sitemaps regenerated, `dist/` complete.
+- [ ] Full build completes in acceptable time; sub-build + sitemap-only paths available.
 
 ## Notes & gotchas
 

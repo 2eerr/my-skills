@@ -34,9 +34,8 @@ npm run validate   # data sanity — 0 errors
 npm run check:seo  # 0 issues expected (page count = unique-content pages)
 ```
 
-(A word-count check enforces per-type ranges; the tracker generator re-derives statuses.)
-Sitemaps are generated post-build; a `gen:sitemaps`-style task regenerates them from existing
-`dist/` without a full build.
+(A word-count check enforces per-type ranges; the tracker generator re-derives statuses.
+Sitemap mechanics + regeneration tasks: `seo-technical-seo` / `astro-ssg`.)
 
 ## Deploy to a static host
 

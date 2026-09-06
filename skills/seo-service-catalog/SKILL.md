@@ -36,19 +36,17 @@ segment; `related` drives cross-linking (see the keyword-architecture skill).
 
 ## Page specs
 
-- **Hub** (`/services/{slug}/`): national authority page, 1,500–2,500 words, ≥15 entities,
-  ≥3 unique FAQs, schema `Service + WebPage + BreadcrumbList (+ FAQPage)`. Always builds,
-  ships only with `unique: true`.
-- **Money** (`/{region}/{location}/{slug}/`): conversion page, 1,000–1,500 words, ≥15 entities,
-  3–9 unique FAQs, ≥6 related-service links, schema `Service + LocalBusiness + FAQPage +
-  BreadcrumbList`.
+- **Hub** (`/services/{slug}/`): the national authority page for one service — ranks for
+  `{service}` nationwide and anchors that service's hub-and-spoke. Word count, entity floor,
+  FAQ count: `seo-content-writing`; schema row: `seo-schema`.
+- **Money** (`/{region}/{location}/{slug}/`): the conversion page for one service in one
+  location — ranks for `{Service} in {Location}, {Region}`. Specs + link requirements:
+  `seo-content-writing` / `seo-onpage-seo`; schema row: `seo-schema`.
 
 ## Publishing rules
 
-- Overview always ships (core page).
-- Hub ships when `hubs/{slug}.md` has `unique: true` — per service, no cross-dependency.
-- Money page ships when its file has `unique: true` — per page.
-- Header Services mega menu is hidden until ≥1 hub has `unique: true`.
+Content-gated publishing (hub ships per-service on `unique: true`, money per-page, overview
+always ships, mega-menu visibility) is owned by `seo-location-model` — apply it there.
 
 ## Fixed batch writing order
 

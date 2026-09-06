@@ -55,10 +55,20 @@ locations doc/data — read it for a specific region's list and populations.
 - **Locations publish progressively, per location** — a location renders once its own page +
   all its money pages are `unique: true` (an `isCompleteLocation` check); it does not wait for
   the rest of the region.
-- **Hubs publish per service** — `/services/{slug}/` renders once `hubs/{slug}.md` is `unique: true`.
-- **Header Locations mega menu** is hidden until ≥1 region is fully published; it lists only
-  fully-published regions, grouped, and updates automatically on next build. The same
-  "complete regions" check powers the Footer, `/locations/`, and the homepage.
+- **Hubs publish per service** — `/services/{slug}/` renders once `hubs/{slug}.md` is `unique: true`;
+  money pages ship per page with no sibling dependency; core pages always ship.
+- **Header mega menus are visibility-gated:** Locations menu hidden until ≥1 region is fully
+  published (lists only complete regions, grouped); Services menu hidden until ≥1 hub is
+  `unique: true`. The same "complete regions" check powers the Footer, `/locations/`, and the
+  homepage. No partial regions are ever visible.
+
+## Data validation & regeneration
+
+- Validate before every build (`npm run validate`-style script): every location references a
+  valid region · demand-filter range respected · no duplicate location+region pairs · required
+  fields present · slug format valid (lowercase, hyphenated).
+- **Never hand-edit the region/location JSON.** Edit the locations inventory (doc appendix or
+  raw CSV), re-run the generator script, then validate + rebuild.
 
 ## Region page order
 

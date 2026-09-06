@@ -40,9 +40,9 @@ JSON-LD by `seo-schema`; copy quality by `seo-content-writing`.
 
 ## 5. Non-thin content gate
 
-- Word counts per page type are owned by the content-writing skill (money 1,000–1,500;
-  location/region 1,000–1,400; hubs 1,500–2,500). No lorem/placeholder/empty blocks.
-- Write for humans first (real local facts), then optimize.
+Word-count ranges per page type and all copy quality rules are owned by `seo-content-writing` —
+this gate only checks the rendered page clears its type's range (word-count script) with no
+lorem/placeholder/empty blocks.
 
 ## 6. Internal linking
 

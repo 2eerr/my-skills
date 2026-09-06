@@ -7,6 +7,24 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 ## [Unreleased]
 
 ### Added
+- **Docs↔skills audit fixes:** added the missing coverage — E-E-A-T & off-page rules (→
+  `seo-local-seo`), data-validation + never-hand-edit-JSON regeneration rules (→
+  `seo-location-model`), responsive breakpoints + micro-interaction/reduced-motion rules (→
+  `seo-design-system`), the per-page author-prompt skeleton and corrected core-page word-count
+  ranges (→ `seo-content-writing`). De-duplicated cross-skill bleed so each rule has one
+  owner: keyword caps → keyword-architecture; page paths + strict content rule →
+  content-writing (autopilot enforces via pointers); word/entity/schema specs + publish gating
+  → content-writing/schema/location-model (service-catalog points); font + motion mechanics →
+  design-system (technical/astro point); sitemap regen task → astro-ssg; OG/canonical rule
+  statements → on-page/technical (astro-ssg keeps only Base.astro wiring).
+- **`seo-site-blueprint` skill** — the phased build methodology (from the reference plan doc):
+  four strategy pillars, scope discipline + page-inventory math, Phases 0–8 each with a review
+  gate (data → scaffold → design → core → pilot region → batched rollout → SEO layer →
+  QA/launch → post-launch), and the per-region batch checklist.
+- **`astro-ssg` §7 "Build performance at scale"** — light templates, single CSS bundle,
+  SVG-first imagery, per-region sub-builds, sitemap-only regeneration, post-build passes on
+  every build variant (build-time guidance from the reference docs; runtime CWV stays in
+  `seo-technical-seo`).
 - **`astro-ssg` skill** — all Astro-only instructions consolidated from the reference docs:
   scaffold/config, `getStaticPaths()` data-driven routes, `Base.astro` head wiring, content-file
   rendering + gates, component-first rule, `dist/` output quirks, post-build passes.

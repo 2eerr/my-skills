@@ -178,4 +178,5 @@ Notes:
 `seo-local-seo`, `seo-image-seo`,
 `seo-keyword-architecture`, `seo-service-catalog`,
 `seo-location-model`, `seo-data-packs`,
-`seo-design-system`, `seo-deployment`, `astro-ssg`, `linear-git-workflow`.
+`seo-design-system`, `seo-deployment`, `astro-ssg`, `seo-site-blueprint`,
+`linear-git-workflow`.

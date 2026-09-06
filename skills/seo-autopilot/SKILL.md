@@ -17,8 +17,8 @@ This skill is the **orchestrator**. Detailed specs live in the sibling skills:
 `seo-technical-seo`, `seo-schema`, `seo-local-seo`,
 `seo-image-seo`, `seo-keyword-architecture`,
 `seo-service-catalog`, `seo-location-model`,
-`seo-data-packs`, `seo-design-system`, `seo-deployment`, and (for the build side)
-`astro-ssg`.
+`seo-data-packs`, `seo-design-system`, `seo-deployment`, `astro-ssg` (build side), and
+`seo-site-blueprint` (the overall phased build plan).
 
 ## Project config (supply per site, never hardcode in the skill)
 
@@ -31,12 +31,9 @@ metro/suburb, country/city, etc.).
 
 ## Hard rule — no templates, no scripts, no copy-paste
 
-- Write every page **individually and by hand** into its own file. No reusable skeleton, no
-  fill-in-the-blank outline, no shared block.
-- **Scripts may build routes, assemble data, and verify output — never write page words.**
-- No sentence, paragraph, list item, table, or FAQ may be reused from any other page.
-- Every page must be **≥90% unique** from every other page on the site.
-- If you are about to reuse text you already wrote — **stop and rewrite**.
+The strict content rule (hand-written pages, scripts never write words, no reused text,
+≥90% uniqueness) is owned by `seo-content-writing` — the autopilot **enforces** it on every
+page it writes. If you are about to reuse text you already wrote — stop and rewrite.
 
 ## Phase 1 — Gather context (every time)
 
@@ -94,12 +91,8 @@ region page after all locations" todo plus a final tracker-sync todo.
 ## Phase 3 — The writing loop
 
 1. Find the first `[ ]`/`[~]` entry top-to-bottom.
-2. Write that page to the content folder per the content-writing skill:
-   - Money → `{content}/money/{region}/{location}/{service}.md`
-   - Location → `{content}/locations/{region}/{location}.md`
-   - Region → `{content}/regions/{region}.md`
-   - Hub → `{content}/hubs/{service}.md`
-   - Core → `{content}/core/{page}.md`
+2. Write that page to the content folder at its family's path (page families + all writing
+   rules: `seo-content-writing`).
 3. Move to the next entry. **Do not stop, do not ask permission.**
 4. Re-run the tracker generator after each location/region batch.
 

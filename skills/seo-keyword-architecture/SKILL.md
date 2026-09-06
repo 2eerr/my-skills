@@ -21,8 +21,6 @@ human page name. Populate the per-service sets from the project's keyword resear
 | Location | `/{region}/{location}/` | `{primary service} {Location}, {Region}` |
 | Money (location×service) | `/{region}/{location}/{service}/` | `{Service} in {Location}, {Region}` |
 
-Total pages = core + services + regions + locations + (locations × services).
-
 ## Keyword tiers (per money page)
 
 | Tier | What | Where | Max uses |

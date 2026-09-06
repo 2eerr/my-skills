@@ -52,6 +52,10 @@ body text. Pick text color on accent by measured contrast (not by habit). On dar
 - Radius: buttons/inputs `rounded-xl`, cards `rounded-2xl`, badges `rounded-full`.
 - Cards `shadow-sm` → hover lift + larger shadow + brand border tint; primary/accent buttons
   carry a soft colored glow; hero bands are dark with radial brand glows + subtle grid overlay.
+- **Responsive, mobile-first:** breakpoints sm 640 / md 768 / lg 1024 / xl 1280; grids collapse
+  to 1-col on mobile; touch targets ≥44px; no horizontal overflow.
+- **Micro-interactions:** hover lifts/nudges, card elevation, accordion rotate, menu slide —
+  CSS transitions only, all respecting `prefers-reduced-motion`.
 
 ## Core components
 
