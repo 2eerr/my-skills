@@ -28,7 +28,8 @@ JSON-LD by `seo-schema`; copy quality by `seo-content-writing`.
 
 ## 3. Canonical
 
-- Absolute `https://{domain}` + the site's canonical URL scheme (see the technical skill) on
+- Absolute `https://{domain}` + the site's canonical URL scheme (the **trailing-slash scheme is
+  owned by `seo-technical-seo`** — this section covers only the tag itself, not the pattern) on
   **every** page; reuse the exact same value for `og:url` and the `WebPage.url` schema node.
 - No self-referencing inconsistencies — the SEO check script cross-checks sitemap vs canonical.
 

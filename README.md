@@ -31,6 +31,7 @@ lead-gen sites** (any service niche). They were distilled from the maintainer's 
 | [`seo-deployment`](skills/seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
 | [`astro-ssg`](skills/astro-ssg/SKILL.md) | Astro mechanics: scaffold, getStaticPaths routes, Base layout, content rendering, components, build output + build-time performance at scale. |
 | [`linear-git-workflow`](skills/linear-git-workflow/SKILL.md) | Commit/publish with linear history: feature branches `<type>/<slug>`, descriptive commits, rebase + `--ff-only`, push default branch. |
+| [`tracker`](skills/tracker/SKILL.md) | TRACKER.md file format and generator-script contract: exact layout, section structure, status symbols, per-section line formats, and the input/output rules for producing the tracker from the content folder. |
 
 ## Install
 
@@ -233,11 +234,13 @@ my-skills/
 ├── AGENTS.md            # AI working instructions (rules, workflows, conventions)
 ├── CHANGELOG.md         # chronological record of skill/doc changes
 ├── templates/           # scaffolds (not discovered by the CLI)
-└── skills/              # the installable skills (auto-discovered by the CLI)
-    ├── seo-*/SKILL.md
-    └── linear-git-workflow/SKILL.md
-
-(docs/ — original reference specs — is local-only: gitignored, never pushed)
+├── skills/              # the installable skills (auto-discovered by the CLI)
+│   ├── seo-*/SKILL.md
+│   └── linear-git-workflow/SKILL.md
+└── source/              # niche-specific reference files from a real implementation (gitignored)
+    ├── docs/            # domain manuals + content pipeline docs (water damage site)
+    ├── scripts/         # build, validation, and generation scripts (water damage site)
+    └── temp/            # ad-hoc throwaway helpers (one-off audits, fixers)
 ```
 
 ## Environment variables & notes

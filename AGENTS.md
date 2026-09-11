@@ -30,11 +30,13 @@ my-skills/
 ├── CHANGELOG.md         # chronological record of skill/doc changes (keep in sync)
 ├── templates/           # scaffolds (NOT discovered by the CLI)
 │   └── SKILL.template.md
-└── skills/              # the installable skills (auto-discovered by the CLI)
-    └── <skill-name>/SKILL.md
+├── skills/              # the installable skills (auto-discovered by the CLI)
+│   └── <skill-name>/SKILL.md
+└── source/              # niche-specific reference files from a real implementation (gitignored)
+    ├── docs/            # domain manuals + content pipeline docs (water damage site)
+    ├── scripts/         # build, validation, and generation scripts (water damage site)
+    └── temp/            # ad-hoc throwaway helpers (one-off audits, fixers)
 ```
-
-(`docs/` — original reference specs — is local-only: gitignored, never pushed.)
 
 ## Golden rules
 
@@ -49,6 +51,16 @@ my-skills/
 5. **Skills must stay agent-agnostic.** They are used across many AI IDEs (mostly OpenCode and
    Freebuff, but also Claude Code, Codex, Cursor, …). Write rules in generic terms — never bind
    a skill's content to one specific agent/IDE.
+
+### source/ → skill relationship
+
+The `source/` directory holds **niche-specific reference files from a real implementation**
+(water damage restoration site). These are the *source material* the skills were distilled from,
+but they are **not** the skills themselves. When creating or updating a skill from `source/`
+files: extract the **general pattern, rules, and workflow** — then generalize it with
+`{placeholders}` so it applies to any niche. Never carry brand names, domain-specific service
+lists, hardcoded analytics IDs, or location-specific data into a skill. The `source/` files are
+reference; the skills are the reusable abstraction.
 
 ## Skill file spec (frontmatter)
 
@@ -99,13 +111,16 @@ confirmation. These are repo-workflow shortcuts, not `skills` CLI commands.
 |---|---|
 | `git!` | **Descriptive commit (on a branch).** If on `main`, first create a feature branch named for the change (see Conventions → Branching) — **never commit directly to `main`.** Inspect `git status` + `git diff`, stage all changes (`git add -A`), and commit with a **specific imperative message that describes the actual change** (never a generic "update"). |
 | `push!` | **Commit, integrate, publish, then clean up `main` — in this order, keeping history linear:** (1) run `git!` (commit pending work on its feature branch); (2) for **every other local branch except `main`**, rebase it onto `main` then fast-forward `main` onto it (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`) — **no merge commits**; (3) push **`main`** to `origin` (`git push origin main`); (4) **delete only the local branches that merged successfully into `main`** (`git branch --merged main`, excluding `main` itself) — never delete unmerged branches. |
-| `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and the local-only `docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list`. |
+| `docs!` | **Sync the docs with the real content.** Update every doc so it matches the current repo — the README skills table, the "Current skills" list here, `CHANGELOG.md`, and the local-only `source/docs/` — so all fields, lists, commands, and counts reflect the actual files. Re-validate with `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list`. |
 | `i!` | **Instruction only — do NOT act.** Don't perform the described action. Instead, add it as a rule/instruction to the relevant `.md` file (usually `AGENTS.md`, or the matching skill/doc), then stop. |
+| `ii!` | **Implement the requested things AND record them in the docs.** When the user types `ii!` (typically right after a feature/fix request), implement in code whatever was asked **and** add/update the relevant `.md` files (`AGENTS.md` + `README.md` + `source/docs/*.md` where applicable) so the new behavior is documented as instructions. Place the instruction in the most relevant file — `AGENTS.md` for workflow/commands, `README.md` for project-level, `source/docs/*.md` for domain-specific. Code and docs must stay in sync — never leave a task "done" with its doc stale. |
 | `clean!` | **Merge & prune branches (no push).** (1) run `git!` (commit pending work on its feature branch); (2) integrate **every other local branch** into `main` — rebase onto `main` then fast-forward (`git rebase main <branch>` → `git checkout main && git merge --ff-only <branch>`), no merge commits; (3) **delete only the local branches that merged successfully** into `main` (`git branch --merged main`, excluding `main`) — branch names only, never their code (use `git branch -d`, never `-D`, so unmerged work can't be lost). |
 
 Notes:
 - `i!` takes precedence: if a message starts with `i!`, only record the instruction in the right
   `.md` file — never execute it.
+- `ii!` is the opposite: implement **and** record. If a message starts with `ii!`, make the
+  code/content changes **and** update the relevant docs so the new behavior is documented.
 - `git!`/`push!` follow the Conventions below (commit to a **feature branch, never `main`**;
   pinned `2eerr` remote; author `hammad <hello@hammad.com>`).
 - `push!` is the sanctioned way to land work on `main`: it rebases feature branches onto `main`
@@ -166,7 +181,7 @@ Notes:
 ## Quality bar for a good skill
 
 - Description is specific enough that the agent loads it at the right moment (and only then).
-- Body is actionable and self-contained — it works without opening the local-only `docs/`.
+- Body is actionable and self-contained — it works without opening the local-only `source/docs/`.
 - Uses imperative, concrete language; no filler.
 - Stays general (placeholders + config step), so it applies across many projects.
 - Reasonable length; split into multiple skills when topics diverge.
@@ -179,4 +194,4 @@ Notes:
 `seo-keyword-architecture`, `seo-service-catalog`,
 `seo-location-model`, `seo-data-packs`,
 `seo-design-system`, `seo-deployment`, `astro-ssg`, `seo-site-blueprint`,
-`linear-git-workflow`.
+`linear-git-workflow`, `tracker`.

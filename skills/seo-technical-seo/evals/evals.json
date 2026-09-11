@@ -1,0 +1,23 @@
+{
+  "skill_name": "seo-technical-seo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My site has routes like /texas, /texas/houston, /texas/houston/mold-remediation — no trailing slashes. Fix this to follow the canonical trailing-slash scheme. What files do I need to change?",
+      "expected_output": "Identification of the route files, canonical tag, sitemap URLs, og:url, JSON-LD URLs, and internal hrefs that need trailing slashes added. Should reference the exact patterns from the skill.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Run the SEO check script on my dist/ folder and tell me what's broken.",
+      "expected_output": "The agent should describe running check-seo.js against dist/**/*.html, checking for missing title, meta description, canonical, JSON-LD, and OG tags, then reporting per-tag missing counts.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I'm about to deploy. Walk me through the delivery gate — what scripts do I run and what does each check?",
+      "expected_output": "The full delivery gate sequence: npm run build (prebuild → Astro → fetchpriority → sitemaps), npm run validate (data sanity), npm run check:seo (0 issues), npm run check:wordcounts (per-type ranges), plus the 5-page random review and accessibility pass.",
+      "files": []
+    }
+  ]
+}

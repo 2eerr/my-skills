@@ -51,6 +51,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   never-fabricate-reviews, LocalBusiness entity + NAP consistency, validation.
   `seo-technical-seo` §9 now points to it (no duplicated matrix); the autopilot
   sibling list and README updated.
+- **`tracker` skill** — the TRACKER.md file format and generator-script contract:
+  exact section layout (summary table, legend, core/hubs/regions/money pages with
+  nested per-region sub-headings), status symbol derivation rules, per-line format
+  specs, frontmatter `unique: true` check contract, `[~]`/`[!]` preservation across
+  regenerations, and the content-folder structure the script reads.
+- **`source/` directory** — consolidated all project reference files into `source/`
+  (gitignored): `source/docs/` (domain manuals + content pipeline), `source/scripts/`
+  (build, validation, and generation scripts), `source/temp/` (ad-hoc throwaway
+  helpers). Updated all skill path references from `scripts/`→`source/scripts/`,
+  `temp/`→`source/temp/`, `docs/`→`source/docs/` across 7 skills.
+- **Script references across skills** — added concrete `source/scripts/` and `source/temp/` path
+  references to 7 skills: `tracker` (gen-pages-tracker, claim-state), `seo-autopilot`
+  (claim-state, gen-pages-tracker, check-seo, check-wordcounts), `seo-deployment`
+  (full build pipeline: prebuild-check, build, add-fetchpriority, generate-sitemaps,
+  validate-data, check-seo, check-wordcounts, gen-pages-tracker, package-deploy),
+  `seo-technical-seo` (check-seo, generate-sitemaps), `seo-location-model`
+  (validate-data, gen-locations), `astro-ssg` (full build pipeline), `seo-content-writing`
+  (check-wordcounts, check-seo, gen-pages-tracker).
+- **`ii!` shorthand command** — implement + record: make the code/content changes AND
+  update the relevant `.md` files so the new behavior is documented. Opposite of `i!`
+  (instruction only, no code changes).
 - **`linear-git-workflow` skill** — the repo's git discipline generalized into a reusable,
   agent-agnostic skill: never commit to the default branch, `<type>/<kebab-slug>` feature
   branches, descriptive imperative commits, integrate via rebase + `git merge --ff-only`
@@ -70,8 +91,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 - **`CHANGELOG.md`** — this file.
 - **Git conventions** — feature-branch workflow, Conventional-Commits branch naming
   (`<type>/<kebab-slug>`), and a strictly linear history (rebase + `--ff-only`, no merge commits).
+- **Evals (6 skills):** `seo-autopilot`, `seo-content-writing`, `seo-technical-seo`,
+  `seo-schema`, `seo-deployment`, `tracker` — each with 3 realistic test prompts in
+  `evals/evals.json` for benchmarking and quality verification.
+- **source/ → skill relationship** documented in `AGENTS.md` (Golden rules subsection) —
+  `source/` files are niche-specific reference material; skills extract the general pattern
+  with `{placeholders}`, never carry niche-specific bindings.
 
 ### Changed
+- **Description trims (6 skills):** `seo-technical-seo`, `seo-schema`, `seo-deployment`,
+  `astro-ssg`, `tracker`, `linear-git-workflow` — shortened to ≤300 chars while keeping
+  trigger specificity (skill-creator industry standard).
+- **`seo-keyword-architecture`** — added "When to use it" section with 4 trigger contexts
+  (keyword selection, internal-link map, density audit, cross-service keywords).
+- **`seo-onpage-seo` §3** — clarified that the canonical trailing-slash scheme is owned
+  by `seo-technical-seo`; this section covers only the tag itself.
+- **Removed `skills/skill-creator/`** — external dependency from `anthropics/skills`,
+  not a custom skill; lives in `.agents/skills/skill-creator/` (CLI install location).
+- **`source/` description** updated in `AGENTS.md` Layout + `README.md` Layout — now
+  reads "niche-specific reference files from a real implementation (water damage site)".
+- **`source/docs/TRACKER.md`** — removed duplicate legend from Money Pages section
+  (top-of-file legend already covers status symbols).
 - Renamed all SEO skills from `programmatic-seo-*` to `seo-*` (folders + frontmatter) and
   removed the "Programmatic SEO" wording from every title, description, and doc — the system is
   now branded simply `seo-*` alongside `linear-git-workflow`.

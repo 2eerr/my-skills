@@ -1,6 +1,6 @@
 ---
 name: seo-schema
-description: "Structured data (JSON-LD) spec for a local-SEO lead-gen site (any service niche) — the base graph (WebSite + Organization + WebPage) every page ships, the per-page-type schema matrix (LocalBusiness, Service, FAQPage, BreadcrumbList, ItemList, AboutPage/ContactPage), consistent `@id` referencing, FAQPage emitted only from a page's own unique FAQs, the never-fabricate-reviews rule, LocalBusiness entity + NAP consistency, and post-build validation. Use when authoring, editing, or auditing any page's JSON-LD structured data."
+description: "Structured data (JSON-LD) for a local-SEO lead-gen site (any niche) — base graph, per-page schema matrix, @id conventions, FAQPage-from-own-content-only, never-fabricate-reviews, LocalBusiness/NAP, and validation. Use when authoring, editing, or auditing any page's JSON-LD."
 metadata:
   internal: true
 ---

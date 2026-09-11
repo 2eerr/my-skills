@@ -1,0 +1,23 @@
+{
+  "skill_name": "tracker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a content folder with 5 core pages, 3 service hubs, 2 regions (TX with 4 locations, FL with 6 locations), and 20 services. Generate the TRACKER.md for this site. TX has 2 complete locations and 1 in-progress. FL has 0 complete.",
+      "expected_output": "A complete TRACKER.md with: header, summary table (unique/total per category), legend, Core Pages section (5/5 with checkmarks), Service Hubs (3/3), Region Pages (2/2), Money Pages nested by region showing TX (2/4 complete locations) and FL (0/6 complete locations) with per-location money page counts and population formatting.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "My tracker shows a location as [x] but I know its money page isn't actually unique yet. The generator must have gotten it wrong. What's the likely cause?",
+      "expected_output": "Explanation that [x] is derived from unique: true in frontmatter — the content file probably has unique: true set prematurely. Should check the file's frontmatter, remove unique: true if content isn't done, and re-run the generator.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I claimed region CA with claim-state.mjs, then ran the tracker generator. Did my claim survive?",
+      "expected_output": "Yes — the generator preserves [~] and [!] flags across regenerations. The claim (flipping rows to [~]) survives because the script parses the existing tracker, collects manual overrides, and overlays them on the fresh filesystem-derived statuses.",
+      "files": []
+    }
+  ]
+}

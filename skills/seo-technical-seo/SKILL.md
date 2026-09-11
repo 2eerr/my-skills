@@ -1,6 +1,6 @@
 ---
 name: seo-technical-seo
-description: "Technical SEO spec for a local-SEO lead-gen site (any niche) — the canonical trailing-slash URL architecture, sitemap-index with per-region sitemaps, robots and meta-robots, Core Web Vitals, indexability, analytics injection, and the SEO check script that enforces delivery. Use when building routes/sitemaps or auditing site-level technical SEO. Titles/meta/headings/links: see on-page skill; JSON-LD: schema skill; NAP/GBP: local skill."
+description: "Technical SEO for a local-SEO lead-gen site (any niche) — URL architecture (trailing-slash scheme), sitemaps, robots, Core Web Vitals, indexability, analytics, and the SEO check script. Use when building routes, auditing site-level technical SEO, or debugging sitemaps/robots/canonicals. Titles/meta: on-page skill; JSON-LD: schema skill; NAP: local skill."
 metadata:
   internal: true
 ---
@@ -76,6 +76,14 @@ Site-level technical rules the build and the SEO check script enforce. Siblings 
 Runs on built HTML before every delivery gate; fails on: missing/duplicate title or meta,
 missing/relative canonical, missing og/twitter, missing/invalid JSON-LD, orphan pages (no
 internal link in), pages under word count, empty blocks.
+
+**Script:** `source/scripts/check-seo.js` — scans `dist/**/*.html` for missing title, meta
+description, canonical, JSON-LD, and OG tags. Outputs per-tag missing counts and total
+page count.
+
+**Sitemap script:** `source/scripts/generate-sitemaps.js` — walks `dist/`, produces
+`sitemap-index.xml` + per-region child sitemaps. Uses source file `mtime` for
+`<lastmod>`. Omits `changefreq`/`priority`.
 
 ## Checklist (done when)
 

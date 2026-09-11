@@ -70,6 +70,13 @@ locations doc/data — read it for a specific region's list and populations.
 - **Never hand-edit the region/location JSON.** Edit the locations inventory (doc appendix or
   raw CSV), re-run the generator script, then validate + rebuild.
 
+**Scripts:**
+
+| Script | Location | Purpose |
+|---|---|---|
+| `validate-data.js` | `source/scripts/` | Validates `states.json`, `cities.json`, `services.json` — required fields, population ≥1K, unique slugs, no duplicate pairs |
+| `gen-locations.js` | `source/scripts/` | Generates `states.json` + `cities.json` from a locations doc (e.g. `source/docs/LOCATIONS.md` Appendix A); geocodes via Open-Meteo, caches in `source/scripts/geo-overrides.json` |
+
 ## Region page order
 
 Write all of a region's location pages (and their money pages) first; write the region page

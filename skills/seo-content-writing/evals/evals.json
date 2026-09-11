@@ -1,0 +1,23 @@
+{
+  "skill_name": "seo-content-writing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a money page for 'mold remediation in Austin, Texas' for my water damage restoration site. Brand is CleanRestore. Include the full frontmatter with title, description, faqs, and unique: true.",
+      "expected_output": "A complete money page markdown file with frontmatter (title ≤60 chars, description 140-160 chars, 3-9 unique FAQs, unique: true on its own line), 1000-1500 words, ≥15 entities, ≥5 H2s, tables, blockquotes, internal links, expert voice, local Austin specifics.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review this location page I wrote for Houston and tell me what fails the quality gates. Here's the content: [pastes a short location page that's missing FAQs, has only 2 H2s, and no table]",
+      "expected_output": "Specific feedback against the quality gates: missing FAQs (needs ≥3), too few H2s (needs ≥4), no table, word count likely under 1000, and suggestions for each fix.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need to write 5 money pages for the same service across different cities in Florida. How do I make sure each one is ≥90% unique vs the others?",
+      "expected_output": "Guidance on using different local entities, neighborhoods, problems, seasonal patterns, and expert observations per city. Should mention the author prompt skeleton and data packs as the mechanism for uniqueness.",
+      "files": []
+    }
+  ]
+}

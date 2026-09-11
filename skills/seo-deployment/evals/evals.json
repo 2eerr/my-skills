@@ -1,0 +1,23 @@
+{
+  "skill_name": "seo-deployment",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just finished writing 10 new money pages for the Florida region. Walk me through everything I need to do before uploading to the host.",
+      "expected_output": "The full delivery gate: rebuild (prebuild → Astro → fetchpriority → sitemaps), validate data, check SEO (0 issues), check word counts, random 5-page review, tracker sync, then upload dist/ contents to the web root.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "My build passed but the sitemap URL count doesn't match the rendered page count. What do I check?",
+      "expected_output": "Troubleshooting steps: verify unique: true on all intended pages, check for empty region sitemaps excluded from index, confirm the generate-sitemaps.js walks dist/ correctly, and that no routes render without content.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Set up cache headers for my Apache host. I have hashed asset bundles (JS/CSS), images, fonts, and HTML pages.",
+      "expected_output": "An .htaccess config with mod_deflate for compression, mod_expires with immutable 1-year for hashed bundles, ~1 week for images/fonts, ~1 hour for HTML, and a custom 404 Document.",
+      "files": []
+    }
+  ]
+}

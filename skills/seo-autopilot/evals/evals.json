@@ -1,0 +1,23 @@
+{
+  "skill_name": "seo-autopilot",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a local-SEO site for water damage restoration covering Texas. The tracker shows 3 locations in the Dallas region are [ ] (not started) and the region page is [~]. Write the location pages and their money pages for those 3 locations, then write the region page last. Follow the autopilot workflow.",
+      "expected_output": "Three location pages written to src/content/locations/tx/, each with all money pages in src/content/money/tx/{location}/, then the region page in src/content/regions/tx.md. Each file has unique: true in frontmatter. Tracker rows would re-derive to [x].",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Look at my TRACKER.md and tell me exactly what's left to write. List the unwritten pages by region, in the order I should write them. Don't write anything — just give me the plan.",
+      "expected_output": "A structured list of [ ] and [~] entries grouped by region, with locations before region pages, and a count of remaining money pages per location.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "The tracker shows region CA is [~] but I haven't claimed it yet. Another PC might be working on it. What should I do before I start writing?",
+      "expected_output": "The agent should say to run claim-state.mjs to claim the region, commit and push the claim, then start writing. Should warn about not pre-claiming the whole backlog.",
+      "files": []
+    }
+  ]
+}

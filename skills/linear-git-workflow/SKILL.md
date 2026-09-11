@@ -1,6 +1,6 @@
 ---
 name: linear-git-workflow
-description: "Commit and publish work with a strict linear-history git workflow — never commit directly to the default branch; work on feature branches named `<type>/<kebab-slug>` (Conventional-Commits types); write short imperative commits that describe the actual change; integrate by rebasing each branch onto the default branch and fast-forwarding it with `git merge --ff-only` (no merge commits); then push the default branch. Covers multi-PC sync (pull at session start, never auto-push/merge/delete, conflict = ask, optional `dev` staging branch). Use when committing, pushing, pulling, or merging branches in any repo that keeps protected-branch linear history (including repos whose AGENTS.md defines git!/push!-style shortcuts)."
+description: "Linear-history git workflow — never commit to the default branch; use feature branches named `<type>/<kebab-slug>` (Conventional-Commits); write imperative commits; integrate via rebase + `git merge --ff-only` (no merge commits); push only the default branch. Covers multi-PC sync. Use when committing, pushing, or merging in any repo with protected-branch linear history."
 metadata:
   internal: true
 ---

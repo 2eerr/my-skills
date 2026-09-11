@@ -1,6 +1,6 @@
 ---
 name: seo-deployment
-description: "Build-and-publish workflow for a local-SEO lead-gen site (any niche) built as a static site — the content gate (unique: true) that makes the build equal publishing, the delivery-gate validation scripts (data, SEO, word-count checks), sitemap generation, static-host upload, cache headers, and source-zip packaging. Use when shipping newly-written content or deploying a static Astro/SSG site."
+description: "Build-and-publish workflow for a static local-SEO lead-gen site (any niche) — the content gate (unique: true) that makes build= publishing, delivery-gate validation scripts, sitemap generation, static-host upload, cache headers, and source-zip packaging. Use when shipping content or deploying a static SSG site."
 metadata:
   internal: true
 ---
@@ -29,10 +29,25 @@ hubs per-service; in-progress pages simply aren't built. There is no separate pu
 
 ```bash
 npm install        # once
-npm run build      # renders dist/ + regenerates sitemaps (post-build)
+npm run build      # prebuild check → Astro build → fetchpriority → sitemaps
 npm run validate   # data sanity — 0 errors
 npm run check:seo  # 0 issues expected (page count = unique-content pages)
+npm run check:wordcounts  # every page within its type's word-count range
 ```
+
+### Build pipeline scripts
+
+| Script | Location | Runs when | Purpose |
+|---|---|---|---|
+| `prebuild-check.js` | `source/scripts/` | `prebuild` hook (before Astro) | Clears stale content cache, logs content counts, verifies `unique: true` on all files |
+| `build.js` | `source/scripts/` | `npm run build:states` | Scoped build — sets `BUILD_STATES` env var for `getStaticPaths()` filtering |
+| `add-fetchpriority.js` | `source/scripts/` | Post-build (after Astro) | Adds `fetchpriority="high"` to stylesheet `<link>` tags in `dist/` HTML |
+| `generate-sitemaps.js` | `source/scripts/` | Post-build (after Astro) | Walks `dist/`, produces `sitemap-index.xml` + per-region child sitemaps; uses source file `mtime` for `<lastmod>` |
+| `validate-data.js` | `source/scripts/` | `npm run validate` | Validates `states.json`, `cities.json`, `services.json` — required fields, population ≥1K, unique slugs |
+| `check-seo.js` | `source/scripts/` | `npm run check:seo` | Scans `dist/**/*.html` for missing title/meta/canonical/JSON-LD/OG tags |
+| `check-wordcounts.js` | `source/scripts/` | `npm run check:wordcounts` | Verifies each page's word count falls within its type's range |
+| `gen-pages-tracker.js` | `source/scripts/` | `npm run gen:tracker` | Regenerates `TRACKER.md` from content folder |
+| `package-deploy.js` | `source/scripts/` | `npm run zip` | Builds `deploy.zip` source archive; its `required` list must include every script the build uses |
 
 (A word-count check enforces per-type ranges; a mobile check loads key pages in headless
 Chrome at mobile widths and fails on horizontal overflow; the tracker generator re-derives

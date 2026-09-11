@@ -1,6 +1,6 @@
 ---
 name: astro-ssg
-description: "Astro framework mechanics for building a data-driven static lead-gen site — project scaffold (JS + Tailwind, no TypeScript), astro.config.mjs, JSON data with getStaticPaths() routes, the Base.astro head wiring (canonical/OG/meta-robots/font preload/analytics), content-file rendering via a PageContent component, the component-first rule, dist/ output quirks, post-build passes, and build-time performance at scale (light templates, single CSS bundle, per-region sub-builds). Use when scaffolding, routing, templating, or building with Astro (or adapting the patterns to another SSG)."
+description: "Astro framework mechanics for a data-driven static lead-gen site — scaffold (JS + Tailwind, no TS), getStaticPaths() routes, Base.astro head wiring, content-file rendering via PageContent, component-first rule, dist/ output, post-build passes, and build performance at scale. Use when scaffolding, routing, or building with Astro or adapting patterns to another SSG."
 metadata:
   internal: true
 ---
@@ -27,9 +27,9 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
   means updating it (+ the robots sitemap line) and rebuilding.
 - Global CSS, self-hosted fonts, favicon + apple-touch-icon in `public/`.
 - **Never gitignore `package.json`** — it is the project contract (deps, scripts, metadata).
-- **Throwaway helpers go in `temp/`** (audits, one-off fixers): tracked in git, never packaged
+- **Throwaway helpers go in `source/temp/`** (audits, one-off fixers): tracked in git, never packaged
   into the deploy zip, never deleted without the user asking. Real pipeline scripts live in
-  `scripts/`.
+  `source/scripts/`.
 - **No user-facing copy hardcoded in components** — all text lives in content files or data.
 
 ## 2. Data-driven routes (never hand-write page files)
@@ -132,9 +132,23 @@ intact; each one has a "don't revert" reason:
 ```bash
 npm create astro@latest -- --template minimal   # scaffold (JS, no TS)
 npm run dev          # local render of routes + content gates
-npm run build        # dist/ + post-build passes
+npm run build        # prebuild → Astro build → fetchpriority → sitemaps
 npm run preview      # serve the built dist/ locally
 ```
+
+### Build pipeline scripts
+
+| Script | Location | Runs when | Purpose |
+|---|---|---|---|
+| `prebuild-check.js` | `source/scripts/` | `prebuild` hook | Clears stale content cache, logs content counts, verifies `unique: true` |
+| `build.js` | `source/scripts/` | `npm run build:states` | Scoped build via `BUILD_STATES` env var for `getStaticPaths()` |
+| `add-fetchpriority.js` | `source/scripts/` | Post-build | Adds `fetchpriority="high"` to stylesheet `<link>` tags; parallelized with `worker_threads` |
+| `generate-sitemaps.js` | `source/scripts/` | Post-build | Walks `dist/`, produces `sitemap-index.xml` + per-region child sitemaps from source file `mtime` |
+| `check-seo.js` | `source/scripts/` | `npm run check:seo` | Scans built HTML for missing SEO tags |
+| `check-wordcounts.js` | `source/scripts/` | `npm run check:wordcounts` | Verifies word counts per page type |
+| `validate-data.js` | `source/scripts/` | `npm run validate` | Validates JSON data files |
+| `gen-pages-tracker.js` | `source/scripts/` | `npm run gen:tracker` | Regenerates `TRACKER.md` from content |
+| `package-deploy.js` | `source/scripts/` | `npm run zip` | Builds deploy.zip source archive |
 
 ## Checklist (done when)
 

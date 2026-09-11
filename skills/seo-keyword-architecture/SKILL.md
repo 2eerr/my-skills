@@ -9,7 +9,14 @@ metadata:
 
 Master keyword inventory by page type. The slug is the canonical URL segment; the title is the
 human page name. Populate the per-service sets from the project's keyword research
-(`docs/KEYWORDS.md` or a data file) — the patterns below are niche-agnostic.
+(`source/docs/KEYWORDS.md` or a data file) — the patterns below are niche-agnostic.
+
+## When to use it
+
+- Choosing a primary/secondary/long-tail keyword for any page type.
+- Building the related-services internal-linking map.
+- Auditing keyword density, placement, or max-uses on an existing page.
+- Deciding which cross-service keywords belong on the homepage or location index.
 
 ## Money-keyword pattern per page type
 

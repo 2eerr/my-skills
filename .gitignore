@@ -12,9 +12,8 @@ Desktop.ini
 # Node
 node_modules/
 
-# skills CLI install artifacts (not needed in the source repo)
+# skills CLI installed skills (third-party, install per machine)
 .agents/
-skills-lock.json
 
-# local-only reference specs (not published to GitHub)
-docs/
+# source reference files (project-specific implementations that help build skills)
+source/

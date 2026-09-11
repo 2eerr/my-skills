@@ -22,7 +22,7 @@ This skill is the **orchestrator**. Detailed specs live in the sibling skills:
 
 ## Project config (supply per site, never hardcode in the skill)
 
-Before running, read the project's config (e.g. `site.config.js`, `docs/`, `src/data/`) for:
+Before running, read the project's config (e.g. `site.config.js`, `source/docs/`, `src/data/`) for:
 **brand name**, **domain**, **niche / primary service**, **service list** (N services in M
 categories), **geography scope** (e.g. US states → cities ≥1K pop), **content folder**
 (e.g. `src/content/`), and the **tracker/claim/build scripts**. Everything below uses generic
@@ -37,7 +37,7 @@ page it writes. If you are about to reuse text you already wrote — stop and re
 
 ## Phase 1 — Gather context (every time)
 
-1. Read all reference docs (`docs/*.md`) or load the sibling skills above. Docs are a
+1. Read all reference docs (`source/docs/*.md`) or load the sibling skills above. Docs are a
    **knowledge base, not an automation script** — if a doc contradicts the code or the user's
    request, flag the discrepancy and ask; never mechanically execute a stale doc.
 2. Scan the content folder (`core/`, `hubs/`, regions, locations, money) to see what exists.
@@ -61,11 +61,11 @@ already written (with its status) and ask before overwriting.
 
 So other machines don't duplicate work:
 
-1. Run the project's claim script (e.g. `node temp/claim-state.mjs <region-slug>`) — flips the
-   region + its location/money rows to `[~]`.
+1. Run `node source/temp/claim-state.mjs <region-slug>` — flips the region + its location/money
+   rows to `[~]`. Use `--unclaim` to release.
 2. Commit + push the claim so peers see it (`git add <tracker> && git commit && git push`).
 3. Then start writing. `[~]` rows flip to `[x]` automatically as `unique: true` content ships.
-4. On finish/abandon, un-claim (e.g. `... --unclaim`).
+4. On finish/abandon, un-claim (`node source/temp/claim-state.mjs <region-slug> --unclaim`).
 
 `[~]` means **currently being worked on only** — never pre-claim the whole backlog.
 
@@ -119,9 +119,18 @@ never performed unprompted.
 
 ## Key rules
 
-- Never hand-edit the tracker; always regenerate.
+- Never hand-edit the tracker; always regenerate with `node source/scripts/gen-pages-tracker.js`.
 - Never rewrite `[x]` pages.
 - Always write directly to the content folder — no intermediate files, no copy-paste.
 - Every page must pass the content-writing quality gates.
 - The `unique: true` line must sit on its own line in frontmatter (build gate regex
   `/^unique:\strue\s*$/m` is line-ending-agnostic).
+
+## Scripts
+
+| Script | Location | Purpose |
+|---|---|---|
+| `gen-pages-tracker.js` | `source/scripts/` | Regenerate `TRACKER.md` from content folder |
+| `claim-state.mjs` | `source/temp/` | Claim/unclaim a region before writing |
+| `check-seo.js` | `source/scripts/` | Validate built HTML for SEO tags |
+| `check-wordcounts.js` | `source/scripts/` | Verify word counts per page type |

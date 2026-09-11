@@ -1,0 +1,23 @@
+{
+  "skill_name": "seo-schema",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate the complete JSON-LD for a money page: 'mold remediation in Austin, Texas' on my site cleanrestore.com. Include the base graph, LocalBusiness, Service, BreadcrumbList, and FAQPage.",
+      "expected_output": "A single <script type='application/ld+json'> block with @graph containing WebSite (/#website), Organization (/#organization), WebPage (/#webpage), LocalBusiness (/#localbusiness), Service, BreadcrumbList (/#breadcrumb), and FAQPage. All URLs absolute with trailing slash, @id references consistent, NAP from config.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have 3 pages with identical FAQPage schema text but different visible FAQ sections. What's wrong and how do I fix it?",
+      "expected_output": "Explanation that FAQPage Q&A text must match visible FAQ text exactly, that FAQs must be unique per page (content-writing skill), and that the fix is to write unique FAQs for each page and regenerate the schema from the same frontmatter source.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Audit this JSON-LD I wrote for my homepage. Tell me what's missing or wrong: [pastes a JSON-LD block missing WebSite node and with inconsistent @id references]",
+      "expected_output": "Specific issues: missing WebSite node (every page needs base graph), @id not following the /#node convention, URLs not absolute or missing trailing slash, and a corrected version.",
+      "files": []
+    }
+  ]
+}

@@ -131,7 +131,7 @@ per-page outline.
 
 - [ ] ≥90% unique vs every sibling (measured + recorded)
 - [ ] No reused sentence anywhere on the site
-- [ ] Word count within its type's range (word-count check script)
+- [ ] Word count within its type's range (`source/scripts/check-wordcounts.js` enforces this)
 - [ ] Entity floor met (15/8/5)
 - [ ] Main keyword in H1, intro, ≥1 H2, 1 FAQ; ≥3 secondary keywords
 - [ ] 3–5 long-tail subservices; local entities present; 3–5 local-expert specifics;
@@ -139,5 +139,5 @@ per-page outline.
 - [ ] 8th-grade readability; expert voice; AI-detector + plagiarism checks pass
 - [ ] FAQ unique + matches FAQPage schema; ≥1 table on money/hub pages
 - [ ] UI/UX floor met; ≥6 internal links (money) / ≥8 (location)
-- [ ] SEO check script + non-thin review pass; row re-derives to `[x]` after the tracker
-      generator runs
+- [ ] SEO check script (`source/scripts/check-seo.js`) + non-thin review pass;
+      row re-derives to `[x]` after the tracker generator (`source/scripts/gen-pages-tracker.js`) runs
