@@ -194,4 +194,4 @@ Notes:
 `seo-keyword-architecture`, `seo-service-catalog`,
 `seo-location-model`, `seo-data-packs`,
 `seo-design-system`, `seo-deployment`, `astro-ssg`, `seo-site-blueprint`,
-`linear-git-workflow`, `tracker`, `agents-shorthand`.
+`linear-git-workflow`, `tracker`, `agents-md`.
