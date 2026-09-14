@@ -1,6 +1,6 @@
 ---
 name: astro-ssg
-description: "Astro framework mechanics for a data-driven static lead-gen site — scaffold (JS + Tailwind, no TS), getStaticPaths() routes, Base.astro head wiring, content-file rendering via PageContent, component-first rule, dist/ output, post-build passes, and build performance at scale. Use when scaffolding, routing, or building with Astro or adapting patterns to another SSG."
+description: "Astro framework mechanics for a data-driven static lead-gen site — scaffold (JS + Tailwind, no TS), getStaticPaths() routes, Base.astro head wiring, content-file rendering via PageContent, component-first rule, dist/ output, post-build passes, and build performance at scale (lazy reads, bounded memory/OOM fixes, inode-flat output). Use when scaffolding, routing, or building with Astro, debugging build crashes (heap limit), or adapting patterns to another SSG."
 metadata:
   internal: true
 ---
@@ -16,6 +16,8 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
 - Scaffolding or restructuring an Astro project for a data-driven site.
 - Adding/auditing routes, layouts, components, or content rendering.
 - Debugging build output (routes, CSS bundles, post-build scripts).
+- Debugging build crashes (`Ineffective mark-compacts near heap limit` / OOM) or hitting
+  host file-count (inode) limits on huge sites.
 
 ## 1. Scaffold & config
 
@@ -87,6 +89,10 @@ rendered, and built. The `seo-*` skills own *what* content and rules go on pages
 - `npm run build` → `dist/` is the entire site; `public/` is copied in at build time.
 - Astro emits `index.html` per route, so web servers serve both `/foo` and `/foo/` with no
   redirect rules — the canonical/trailing-slash scheme is enforced in code, not by the server.
+- **Flat output for inode limits** — shared hosts cap file (inode) counts, and 100K+ routes hit
+  it. Configure the output to emit exactly one HTML file per route (Astro: `output: 'static'` +
+  `build: { format: 'file' }`) with no extra per-route files, and keep everything non-site
+  (caches, temp, docs) out of the deploy package.
 - Post-build passes (npm scripts): sitemap generator (replaces `@astrojs/sitemap`; walks
   `dist/`, so only published pages appear) and a `fetchpriority` pass on the bundled CSS link.
 - Dev parity: gates apply identically in `npm run dev` and production builds.
@@ -102,6 +108,21 @@ intact; each one has a "don't revert" reason:
 - **Persistent content-index cache** (e.g. `node_modules/.cache/…json`) — every hit validated
   by `statSync` (size + mtime) so content edits are always caught; written atomically on exit.
   Turns a ~90s full validation into ~2s warm builds. Force a re-scan by deleting the cache file.
+- **Metadata-only checks (`statSync`), never full reads** — existence, size, mtime, and
+  inventory scans (cache validation, trackers, audits, gates that only count files) must use
+  `statSync`; it is ~50× faster than reading file contents. Read a file only when its content is
+  actually needed for that step.
+- **Bounded memory — never hold every page in RAM** — a full build of hundreds of thousands of
+  routes crashes with `Ineffective mark-compacts near heap limit` (multi-GB heap) if in-process
+  Maps accumulate raw markdown and rendered HTML for all routes. Keep memory flat:
+  1. **Strip the raw markdown from the memo after rendering** — once a route's HTML exists, its
+     source text is dead weight in memory (delete the raw entry, keep only what later passes need).
+  2. **Bound any rendered-output cache** (LRU-style, e.g. max ~64 entries) instead of letting it
+     grow with route count.
+  3. **Flush to disk periodically + on exit** — every N routes (e.g. 2000), merge the cache into
+     the persistent on-disk index and clear the in-memory copy; register the flush with
+     `process.on('exit', …)` so nothing is lost. Never hold raw source *and* rendered HTML for
+     all routes simultaneously.
 - **Scope before completeness** — filter routes by build scope **before** running
   region/city-completeness checks, so a scoped build never touches the full content index.
 - **Memoize hot data helpers** (completeness checks, visible-services, slugify) and serve
@@ -158,6 +179,8 @@ npm run preview      # serve the built dist/ locally
 - [ ] Every repeated UI block is a component; no inline copies.
 - [ ] Build output: single CSS bundle (code-split off), sitemaps regenerated, `dist/` complete.
 - [ ] Full build completes in acceptable time; sub-build + sitemap-only paths available.
+- [ ] Memory stays flat on a full build — raw markdown stripped after render, caches bounded,
+  periodic + on-exit flush to the persistent index; no heap-limit crash.
 
 ## Notes & gotchas
 
@@ -166,4 +189,7 @@ npm run preview      # serve the built dist/ locally
 - A route that 404s in dev but exists in data usually means the content file is missing its
   `unique: true` line (the gate, not the router).
 - Keep `cssCodeSplit: false` unless the deploy docs are updated together.
+- `FATAL ERROR: Ineffective mark-compacts near heap limit` on a full build means unbounded
+  in-process caches (raw markdown + rendered HTML accumulating per route) — apply the
+  bounded-memory rules in §7 before reaching for `--max-old-space-size`.
 - Symlinks/paths with spaces (Windows): quote paths in npm scripts.

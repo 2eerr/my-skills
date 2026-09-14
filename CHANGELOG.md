@@ -107,6 +107,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   with `{placeholders}`, never carry niche-specific bindings.
 
 ### Changed
+- **`astro-ssg` §7 bounded-memory rules (OOM fix, from the 242K-page production build):** the
+  full build crashed with `Ineffective mark-compacts near heap limit` because in-process Maps
+  accumulated raw markdown + rendered HTML for every route. Codified: strip raw markdown from
+  the memo after rendering, bound rendered-output caches (LRU ~64), flush to the persistent
+  on-disk index every N routes + on `process.on('exit')`. Also added: metadata-only `statSync`
+  checks (~50× faster than full reads) for scans/trackers/audits, flat one-file-per-route
+  output (`build: { format: 'file' }`) for hosts with inode limits, and the OOM debugging
+  trigger + gotcha. Description updated with the heap-limit/inode triggers.
+- **`seo-deployment` inode + zip discipline:** single server-config file (cache headers +
+  HTTPS/www redirects in one `.htaccess` — no split configs), Hostinger-style zip-upload path
+  (upload → extract at web root → Node app entry `server.js` when the host serves a Node app),
+  and the source-zip **explicit allowlist** (dist/, server.js, package.json, .htaccess, build
+  configs in; src/, node_modules/, temp/, docs/, .git/, caches out) with the existing
+  deploy-zip sync rule.
 - **Windows install docs** — README + AGENTS.md now document the PowerShell/cmd way to set
   `INSTALL_INTERNAL_SKILLS` (the `VAR=1 cmd` prefix is bash-only; PowerShell needs
   `$env:INSTALL_INTERNAL_SKILLS = "1"` first). A plain `npx skills add 2eerr/my-skills` without

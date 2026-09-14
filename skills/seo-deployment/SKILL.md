@@ -65,19 +65,35 @@ zip never drift.
 2. **Upload `dist/` contents** (not the folder itself) into the web root (`public_html/`,
    `dist/`, etc.) via the host's file manager or FTP/SFTP/SSH — delete old contents first.
    - SSH alternative: `rsync -avz dist/ user@host:webroot/`
+   - **Zip upload path (Hostinger-style hPanel):** upload the deploy zip via the file manager,
+     extract at the web root. If the host serves a Node app instead of pure static files, point
+     the app entry at a tiny static-server script shipped in the zip (e.g. `server.js`).
 3. **Domain:** point DNS at the host, set the web root, enable HTTPS (e.g. Let's Encrypt).
 4. **Redeploy after changes:** rebuild → re-upload → clear the host CDN/cache if used.
 
 ## Cache headers
 
-Ship a server config for the host type. For Apache/LiteSpeed (`.htaccess`): gzip
-(`mod_deflate`) for HTML/CSS/JS/JSON/SVG/woff/woff2; `mod_expires` — hashed asset bundles
-immutable 1 year, images/fonts ~1 week, HTML ~1 hour; custom `ErrorDocument 404`. For Netlify
-use `_headers`/`_redirects`; for Cloudflare/S3 set cache rules at the edge.
+Ship a **single** server config file for the host type — one `.htaccess` carries cache
+headers **and** HTTPS/www redirects (splitting them into several config files wastes inodes on
+hosts that count them). For Apache/LiteSpeed (`.htaccess`): gzip (`mod_deflate`) for
+HTML/CSS/JS/JSON/SVG/woff/woff2; `mod_expires` — hashed asset bundles immutable 1 year,
+images/fonts ~1 week–1 year, HTML ~1 hour; custom `ErrorDocument 404`. For Netlify use
+`_headers`/`_redirects`; for Cloudflare/S3 set cache rules at the edge.
 
-## Source zip
+## Source zip — explicit allowlist (inode discipline)
 
-A `zip`-style task can package source files (via a small script) for remote builds/backup.
+A `zip`-style task packages files for remote builds/backup/upload. Build the archive from an
+**explicit allowlist**, never "zip everything except…":
+
+- **Include:** the built output (`dist/`), the runtime entry (e.g. `server.js`),
+  `package.json`, the server config (`.htaccess`), and any build-critical config
+  (`astro.config.mjs`, `site.config.js`) or script the remote build needs.
+- **Exclude:** `src/` (when shipping prebuilt output), `node_modules/`, `temp/`,
+  `docs/`, `.git/`, caches — every excluded dir saves thousands of inodes on the host.
+- **Sync rule:** any script added to the build pipeline must be added to the packaging
+  script's required list in the same change, or remote builds break silently.
+- Ad-hoc/throwaway scripts live in a `temp/` dir that is tracked in git but **never**
+  packaged (see the SSG skill's scaffold rules).
 
 ## SSG output note
 
