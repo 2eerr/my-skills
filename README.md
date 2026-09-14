@@ -42,6 +42,18 @@ These skills are marked `internal: true` (kept off skills.sh), so every command 
 `INSTALL_INTERNAL_SKILLS=1` prefix. Target agents with `-a '*'` (every agent you have installed)
 or list them explicitly (`-a opencode -a claude-code …`).
 
+> **PowerShell / cmd (Windows):** the `VAR=1 command` prefix is bash-only — without the variable
+> the install reports "No skills found". In PowerShell, set the variable first, then run the
+> plain command:
+>
+> ```powershell
+> $env:INSTALL_INTERNAL_SKILLS = "1"
+> npx skills add 2eerr/my-skills -g -a '*'
+> ```
+>
+> cmd: `set INSTALL_INTERNAL_SKILLS=1&& npx skills add 2eerr/my-skills -g -a '*'`.
+> In Git Bash, the prefixed form works as documented.
+
 ```bash
 # All skills, globally, into every supported agent you have installed
 INSTALL_INTERNAL_SKILLS=1 npx skills add 2eerr/my-skills -g -a '*'
@@ -250,7 +262,7 @@ my-skills/
 |---|---|
 | `DISABLE_TELEMETRY` / `DO_NOT_TRACK` | Disable the CLI's anonymous usage telemetry |
 | `GITHUB_TOKEN` / `GH_TOKEN` | Explicit token for private GitHub downloads / update checks |
-| `INSTALL_INTERNAL_SKILLS=1` | Show/install skills marked `metadata.internal: true` |
+| `INSTALL_INTERNAL_SKILLS=1` | Show/install skills marked `metadata.internal: true` (bash prefix — PowerShell/cmd: set `$env:INSTALL_INTERNAL_SKILLS` first, see Install) |
 | `SKILLS_DOWNLOAD_MAX_BYTES` / `SKILLS_EXTRACT_MAX_BYTES` / `SKILLS_EXTRACT_MAX_FILES` | Size/count limits for direct-download & archive sources |
 
 - **Any agent:** these are standard `SKILL.md` skills — swap `-a opencode` for `claude-code`,

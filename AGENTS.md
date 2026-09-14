@@ -94,7 +94,9 @@ npx skills remove <name>                                  # remove (project scop
 
 - **Skills are `internal: true`** — plain `npx skills add . --list` finds none by default; that is
   the expected, delisted state. Prefix `INSTALL_INTERNAL_SKILLS=1` for anything that must see or
-  install them.
+  install them. **PowerShell/cmd (Windows):** the `VAR=1 command` prefix is bash-only — set the
+  variable first (`$env:INSTALL_INTERNAL_SKILLS = '1'` in PowerShell, `set INSTALL_INTERNAL_SKILLS=1&& …`
+  in cmd), then run the plain command. Git Bash uses the prefixed form as documented.
 - **Agents:** prefer `-a '*'` (all detected) or an explicit agent list — the skills are not
   OpenCode-only. **Freebuff** isn't in the CLI's agent list yet: install with `-a universal`
   (project → `.agents/skills/`) and point Freebuff at the skills from the project's `AGENTS.md`.

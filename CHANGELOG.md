@@ -107,7 +107,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   with `{placeholders}`, never carry niche-specific bindings.
 
 ### Changed
-- **Description trims (6 skills):** `seo-technical-seo`, `seo-schema`, `seo-deployment`,
+- **Windows install docs** — README + AGENTS.md now document the PowerShell/cmd way to set
+  `INSTALL_INTERNAL_SKILLS` (the `VAR=1 cmd` prefix is bash-only; PowerShell needs
+  `$env:INSTALL_INTERNAL_SKILLS = "1"` first). A plain `npx skills add 2eerr/my-skills` without
+  the variable reports "No skills found" because every skill is `internal: true`. `seo-technical-seo`, `seo-schema`, `seo-deployment`,
   `astro-ssg`, `tracker`, `linear-git-workflow` — shortened to ≤300 chars while keeping
   trigger specificity (skill-creator industry standard).
 - **`seo-keyword-architecture`** — added "When to use it" section with 4 trigger contexts
