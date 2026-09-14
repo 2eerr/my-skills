@@ -31,6 +31,7 @@ lead-gen sites** (any service niche). They were distilled from the maintainer's 
 | [`seo-deployment`](skills/seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
 | [`astro-ssg`](skills/astro-ssg/SKILL.md) | Astro mechanics: scaffold, getStaticPaths routes, Base layout, content rendering, components, build output + build-time performance at scale. |
 | [`linear-git-workflow`](skills/linear-git-workflow/SKILL.md) | Commit/publish with linear history: feature branches `<type>/<slug>`, descriptive commits, rebase + `--ff-only`, push default branch. |
+| [`agents-shorthand`](skills/agents-shorthand/SKILL.md) | Audit & set up shorthand trigger commands (`git!`, `push!`, `docs!`) in a repo's AGENTS.md — derives a tailored trigger table from the repo's own conventions, audits existing tables for staleness. |
 | [`tracker`](skills/tracker/SKILL.md) | TRACKER.md file format and generator-script contract: exact layout, section structure, status symbols, per-section line formats, and the input/output rules for producing the tracker from the content folder. |
 
 ## Install

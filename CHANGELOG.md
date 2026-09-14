@@ -7,6 +7,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 ## [Unreleased]
 
 ### Added
+- **`agents-shorthand` skill** — audit & set up shorthand trigger commands (`git!`, `push!`,
+  `docs!`, `i!`, `ii!`, `clean!`) in a repo's `AGENTS.md`: checks for a shorthand section,
+  appends a trigger table **derived from the repo's own conventions** (branch model, remote,
+  push policy, docs layout, gates) when missing — never a verbatim transplant — and audits an
+  existing table for staleness. Encodes the design rule that trigger definitions must live in
+  always-loaded `AGENTS.md` (never in a skill), plus the undefined-trigger procedure
+  (offer setup instead of guessing).
 - **docs/AGENTS.md conversion** (target-project operating file): concrete build-performance
   mechanisms — lazy frontmatter reads, stat-validated content-index cache, scope-first
   completeness, memoized/Map lookups, shared markdown processor, worker_threads passes,
