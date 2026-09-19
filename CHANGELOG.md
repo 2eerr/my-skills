@@ -7,6 +7,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 ## [Unreleased]
 
 ### Added
+- **`git-workflow` skill** (renamed from `linear-git-workflow`) — industry-standard git workflow
+  optimized for speed and multi-PC collaboration: GitHub Flow with merge commits (not rebase),
+  feature branches, merge `--no-ff` for readable history, Windows performance optimizations
+  (Defender exclusion, fsmonitor, untracked cache, maintenance), and multi-PC sync rules
+  (pull at start, push at end, never rebase pushed branches). Merge beats rebase for bulk
+  content batches: conflicts resolved once instead of per-commit, fewer steps, works when
+  remote has moved.
+- **`seo-htaccess` skill** — server config for Hostinger LiteSpeed: the `.htaccess` file
+  that handles trailing-slash canonicals, flat-build URL mapping (Astro `format: "file"` →
+  `.html` files served via trailing-slash URLs), gzip compression, and cache headers
+  (immutable for hashed assets, 1 week for images/fonts, 1 hour for HTML). Use when
+  deploying to Hostinger, auditing server config, or fixing 404s/redirect loops.
 - **`agents-md` skill** — create, complete, and audit a repo's `AGENTS.md` (the always-loaded
   AI operating file): full file anatomy (what-it-is, reading protocol/routing table, commands,
   conventions, git rules, docs-sync rule, quality gates, `x!` shorthand triggers,
@@ -20,7 +32,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   completeness, memoized/Map lookups, shared markdown processor, worker_threads passes,
   Tailwind `@source` scoping, Node LTS (→ `astro-ssg` §7); named-rest-param + `temp/` +
   package.json/copy rules (→ `astro-ssg`); multi-PC sync + never-auto-destructive git +
-  optional `dev` staging variant (→ `linear-git-workflow`); mobile check, a11y pass,
+  optional `dev` staging variant (→ `git-workflow`); mobile check, a11y pass,
   deploy-zip sync rule (→ `seo-deployment`); docs-are-knowledge-base + 5 follow-up
   suggestions (→ `seo-autopilot`); no-invented-hexes (→ `seo-design-system`); one-doc-per-
   purpose (→ `seo-site-blueprint`).
@@ -80,7 +92,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
 - **`ii!` shorthand command** — implement + record: make the code/content changes AND
   update the relevant `.md` files so the new behavior is documented. Opposite of `i!`
   (instruction only, no code changes).
-- **`linear-git-workflow` skill** — the repo's git discipline generalized into a reusable,
+- **`git-workflow` skill** (was `linear-git-workflow`) — the repo's git discipline generalized into a reusable,
   agent-agnostic skill: never commit to the default branch, `<type>/<kebab-slug>` feature
   branches, descriptive imperative commits, integrate via rebase + `git merge --ff-only`
   (linear history, no merge commits), then push; includes the commit/publish procedures,
@@ -125,7 +137,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   `INSTALL_INTERNAL_SKILLS` (the `VAR=1 cmd` prefix is bash-only; PowerShell needs
   `$env:INSTALL_INTERNAL_SKILLS = "1"` first). A plain `npx skills add 2eerr/my-skills` without
   the variable reports "No skills found" because every skill is `internal: true`. `seo-technical-seo`, `seo-schema`, `seo-deployment`,
-  `astro-ssg`, `tracker`, `linear-git-workflow` — shortened to ≤300 chars while keeping
+  `astro-ssg`, `tracker`, `git-workflow` — shortened to ≤300 chars while keeping
   trigger specificity (skill-creator industry standard).
 - **`seo-keyword-architecture`** — added "When to use it" section with 4 trigger contexts
   (keyword selection, internal-link map, density audit, cross-service keywords).
@@ -139,7 +151,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). The repo is vers
   (top-of-file legend already covers status symbols).
 - Renamed all SEO skills from `programmatic-seo-*` to `seo-*` (folders + frontmatter) and
   removed the "Programmatic SEO" wording from every title, description, and doc — the system is
-  now branded simply `seo-*` alongside `linear-git-workflow`.
+  now branded simply `seo-*` alongside `git-workflow`.
 - `docs/` is now **local-only**: added to `.gitignore`, untracked from git, purged from git
   history (filter-repo + force-push), and all README/AGENTS references reworded — the files stay
   on the maintainer's disk only.

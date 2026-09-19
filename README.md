@@ -29,8 +29,9 @@ lead-gen sites** (any service niche). They were distilled from the maintainer's 
 | [`seo-data-packs`](skills/seo-data-packs/SKILL.md) | Gather verified per-location local facts before writing. |
 | [`seo-design-system`](skills/seo-design-system/SKILL.md) | Theme-able premium UI system: tokens, typography, components, accessibility. |
 | [`seo-deployment`](skills/seo-deployment/SKILL.md) | Static build = publish (content gate), delivery checks, upload, cache headers. |
+| [`seo-htaccess`](skills/seo-htaccess/SKILL.md) | Server config: .htaccess for Hostinger LiteSpeed — trailing-slash canonicals, flat-build URL mapping, compression, cache headers. |
 | [`astro-ssg`](skills/astro-ssg/SKILL.md) | Astro mechanics: scaffold, getStaticPaths routes, Base layout, content rendering, components, build output + build-time performance at scale. |
-| [`linear-git-workflow`](skills/linear-git-workflow/SKILL.md) | Commit/publish with linear history: feature branches `<type>/<slug>`, descriptive commits, rebase + `--ff-only`, push default branch. |
+| [`git-workflow`](skills/git-workflow/SKILL.md) | Industry-standard git: GitHub Flow with merge commits, feature branches, multi-PC sync, Windows performance. |
 | [`agents-md`](skills/agents-md/SKILL.md) | Create, complete & audit a repo's AGENTS.md — full anatomy (overview, reading protocol, commands, conventions, git rules, docs-sync, quality gates, `x!` trigger commands), derived from the repo's real workflow. |
 | [`tracker`](skills/tracker/SKILL.md) | TRACKER.md file format and generator-script contract: exact layout, section structure, status symbols, per-section line formats, and the input/output rules for producing the tracker from the content folder. |
 
@@ -249,7 +250,7 @@ my-skills/
 ├── templates/           # scaffolds (not discovered by the CLI)
 ├── skills/              # the installable skills (auto-discovered by the CLI)
 │   ├── seo-*/SKILL.md
-│   └── linear-git-workflow/SKILL.md
+│   └── git-workflow/SKILL.md
 └── source/              # niche-specific reference files from a real implementation (gitignored)
     ├── docs/            # domain manuals + content pipeline docs (water damage site)
     ├── scripts/         # build, validation, and generation scripts (water damage site)

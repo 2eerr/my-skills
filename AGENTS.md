@@ -11,6 +11,33 @@ Code, Codex, Cursor, and 70+ other AI IDEs/agents), installed with the official 
 Skills must stay **agent-agnostic**: never bind a skill's content to one specific IDE.
 GitHub (`2eerr/my-skills`) is the single source of truth.
 
+## Reading protocol — what to read before you act
+
+**Start here, then follow the routing table.** Every task maps to a doc (or set of docs)
+that defines "done" for that task.
+
+| If you are going to… | Read these first | Then act on |
+|---|---|---|
+| **Add/update/remove a skill** | This file (AGENTS.md) → `README.md` → `CHANGELOG.md` | `skills/<name>/SKILL.md` |
+| **Edit this file (AGENTS.md)** | This file → `skills/agents-md/SKILL.md` | `AGENTS.md` |
+| **Sync docs with code** | `README.md` + `CHANGELOG.md` + `skills/` directory | Update stale sections |
+| **Validate skill discovery** | This file → Commands section | `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list` |
+| **Install skills globally** | `README.md` → Install section | `npx skills add 2eerr/my-skills -g -a '*'` |
+
+**Action rule:** read the relevant doc, then make the change, then update the matching doc
+if your change affects documented behavior. Never leave a task "done" with its doc stale.
+
+## Documentation map
+
+| Doc | What it covers | When to read it |
+|---|---|---|
+| `AGENTS.md` (this file) | AI working instructions, golden rules, skill spec, commands, conventions, git rules | First read — the entry point to the whole repo |
+| `README.md` | Human-facing overview, skills table, install/update commands, CLI reference | Before installing skills or sharing the repo |
+| `CHANGELOG.md` | Chronological record of skill/doc changes | Before committing changes to see what's documented |
+| `skills/*/SKILL.md` | Individual skill instructions (19 skills) | When working on a specific skill |
+| `templates/SKILL.template.md` | Scaffold for new skills | When creating a new skill |
+| `source/docs/` | Niche-specific reference files (water damage site) | When creating/updating skills from real implementations |
+
 ## Decisions (locked)
 
 - **CLI:** use ONLY the official `skills` CLI (vercel-labs/skills, the tool behind skills.sh) for
@@ -180,6 +207,88 @@ Notes:
 - After any change under `skills/`, always run `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list`
   before committing.
 
+## GitHub sync (multi-PC workflow)
+
+**GitHub is the single source of truth.** Multiple PCs work from the same GitHub repo.
+
+### Pull at session start
+
+Before doing any work, pull the latest changes:
+
+```bash
+git pull origin main
+```
+
+Always start new branches from the latest `main`. Pulling is safe and expected — never skip it.
+
+### Push at session end
+
+After committing on a feature branch, push when ready:
+
+```bash
+git push origin main
+```
+
+Only `main` is ever pushed to `origin`. Feature branches stay local until merged.
+
+### Conflict resolution
+
+If `git pull` results in a merge conflict:
+1. Report the conflicted files to the user
+2. Ask how to resolve (accept theirs, accept ours, or manual merge)
+3. Never auto-resolve conflicts — the user decides
+
+### Pinned remote URL
+
+The remote URL embeds the GitHub username so Credential Manager picks the right account:
+
+```bash
+git remote set-url origin https://2eerr@github.com/2eerr/my-skills.git
+```
+
+This is a per-clone, local-only setting — other PC clones keep their own origin URL.
+
+## Docs-sync rule
+
+**Code and docs must not drift.** When you change skills, update the matching docs in the same
+change:
+
+- **Add/update/remove a skill** → update README skills table + CHANGELOG + "Current skills" list
+- **Edit AGENTS.md** → verify all sections match current repo state
+- **Edit README.md** → verify install commands, skills table, and layout match current files
+
+**Never leave a task "done" with its doc stale.** The docs are the knowledge base — if they
+describe something that no longer exists, the next agent will follow outdated instructions.
+
+## Quality gates (delivery gate)
+
+Before any change is "done":
+
+1. **Validate:** `INSTALL_INTERNAL_SKILLS=1 npx skills add . --list` — must discover all skills
+   with no parse errors.
+2. **README sync:** skills table matches `skills/` directory, install commands work.
+3. **CHANGELOG sync:** entry documents the change.
+4. **AGENTS.md sync:** "Current skills" list matches actual skills.
+
+## Context-gathering rules
+
+When the user asks to "read" or "gather context" from the repo:
+
+1. Read `AGENTS.md` (this file) first.
+2. Read `README.md` for project overview.
+3. Read any skill files referenced in the task.
+4. **Gather context only** — do not take action unless explicitly asked.
+
+The docs are a **knowledge base, not an automation script**. If a doc says something
+that contradicts reality or the user's request, flag the discrepancy and ask — never
+mechanically execute an outdated instruction.
+
+## Post-task follow-up
+
+After finishing any task, propose **5 contextually relevant next steps** drawn from the
+project's current state. Suggestions only — never perform them unprompted. Each should be
+a concrete, likely-next action.
+
 ## Quality bar for a good skill
 
 - Description is specific enough that the agent loads it at the right moment (and only then).
@@ -195,5 +304,5 @@ Notes:
 `seo-local-seo`, `seo-image-seo`,
 `seo-keyword-architecture`, `seo-service-catalog`,
 `seo-location-model`, `seo-data-packs`,
-`seo-design-system`, `seo-deployment`, `astro-ssg`, `seo-site-blueprint`,
-`linear-git-workflow`, `tracker`, `agents-md`.
+`seo-design-system`, `seo-deployment`, `seo-htaccess`, `astro-ssg`, `seo-site-blueprint`,
+`git-workflow`, `tracker`, `agents-md`.
